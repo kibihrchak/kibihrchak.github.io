@@ -288,12 +288,18 @@ At a time of this check new Raspbian image appeared -
 frozen boot some time after mounting NFS root. Here's the [forum
 discussion on that topic][buster-boot-fail].
 
-# Resources [TODO]
+# Resources
 
-*   [nettut] -
-*   [bootflow] -
-*   [rpi-boot] -
-*   [buster-boot-fail] -
+*   [netboot] : Network booting info - Bootloader process, issues.
+*   [nettut] : Setting up network booting for RPi server - booted RPi
+    setup.
+*   [bootflow] : Description of the bootloader execution, and use of OTP
+    bits.
+*   [rpi-boot] : RPi boot process in general.
+*   [bootcode] : BOOTP missing issue discussion.
+*   [rpi-dl] : Download page for Raspbian images.
+*   [buster-boot-fail] : Raspbian Buster freeze issue discussion.
+*   [otpbits] : OTP bits description.
 
 [netboot]: <https://www.raspberrypi.org/documentation/hardware/raspberrypi/bootmodes/net.md>
 [nettut]: <https://www.raspberrypi.org/documentation/hardware/raspberrypi/bootmodes/net_tutorial.md>
@@ -302,6 +308,5 @@ discussion on that topic][buster-boot-fail].
 [bootcode]: <https://www.raspberrypi.org/forums/viewtopic.php?p=1205779#p1205779>
 [rpi-dl]: <https://downloads.raspberrypi.org/>
 [buster-boot-fail]: <https://www.raspberrypi.org/forums/viewtopic.php?p=1496972>
-[bootcode]: <https://www.raspberrypi.org/forums/viewtopic.php?p=1205779&sid=514495f5a9d763f4db00d78bb1a54f8c#p1205779>
 [otpbits]: <https://www.raspberrypi.org/documentation/hardware/raspberrypi/otpbits.md>
 
