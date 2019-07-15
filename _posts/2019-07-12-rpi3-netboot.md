@@ -26,7 +26,9 @@ Aim here was to have a successful boot, and be able to SSH to the RPi.
 4.  For powering up RPi, use USB power meter to monitor the state of the
     device.
 
-Here's the photo of the hardware setup - [TODO].
+Here's the photo of the hardware setup -
+
+![hw-setup](/assets/images/posts/2019-07-12-rpi3-netboot/hw-setup.jpg)
 
 ## Concrete Versions
 
@@ -156,15 +158,13 @@ tftp-root=/tftpboot
 pxe-service=0,"Raspberry Pi Boot"
 ```
 
-### Serial Port [TODO]
+### Serial Port
+
+Picocom is used for serial console -
 
 ```bash
 $ sudo apt install picocom
-$ sudo usermod -a -G dialout marko
-```
-
-```bash
-picocom -b 115200 /dev/ttyUSB0
+$ sudo usermod -a -G dialout $(whoami)
 ```
 
 ## Deploying Image Partitions
@@ -221,12 +221,12 @@ Useful tools for tracking the boot process are:
 
 With RPi successfully booted, I was able to login over serial console.
 After that, remaining step was to start SSH server, and check for the
-given IP address
+given IP address -
 
 ```bash
 $ sudo systemctl enable ssh.service
 $ sudo systemctl start ssh.service
-$ ip a show eth0 [TODO]
+$ ip a show eth0
 ```
 
 Then, all that was left was to SSH to the RPi, prod the home directory
@@ -253,7 +253,25 @@ visible when using `tcpdump`. Here's the snippet what is sniffed from
 the network in this case -
 
 ```
-[TODO]
+marko@marko-VirtualBox:/tftpboot$ sudo tcpdump -i enp0s8 port bootpc
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on enp0s8, link-type EN10MB (Ethernet), capture size 262144 bytes
+19:24:49.960758 IP 0.0.0.0.bootpc > 255.255.255.255.bootps: BOOTP/DHCP, Request from bc:ee:7b:9d:ab:ce (oui Unknown), length 322
+19:24:49.964926 IP marko-VirtualBox.bootps > 192.168.1.221.bootpc: BOOTP/DHCP, Reply, length 306
+```
+
+The single BOOTP is from the host OS network adapter.
+
+Here's how it should look like -
+
+```
+marko@marko-VirtualBox:/tftpboot$ sudo tcpdump -i enp0s8 port bootpc
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on enp0s8, link-type EN10MB (Ethernet), capture size 262144 bytes
+19:25:52.123745 IP 0.0.0.0.bootpc > 255.255.255.255.bootps: BOOTP/DHCP, Request from bc:ee:7b:9d:ab:ce (oui Unknown), length 322
+19:25:52.132651 IP marko-VirtualBox.bootps > 192.168.1.221.bootpc: BOOTP/DHCP, Reply, length 306
+19:25:52.979730 IP 0.0.0.0.bootpc > 255.255.255.255.bootps: BOOTP/DHCP, Request from b8:27:eb:49:f5:8c (oui Unknown), length 322
+19:25:52.981865 IP marko-VirtualBox.bootps > 192.168.1.204.bootpc: BOOTP/DHCP, Reply, length 350
 ```
 
 The solution is to boot it with an SD card with one FAT32 partition, and
