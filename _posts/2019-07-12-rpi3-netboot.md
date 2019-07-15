@@ -92,12 +92,12 @@ I've configured the VM guest network adapter through Xubuntu's
 
 
 <!--
-[TODO] - Provide smaller version
+[TODO] - Provide smaller version of photos
 -->
 
-![1](/assets/images/posts/2019-07-12-rpi3-netboot/nm-connection-editor_1.png)
-![2](/assets/images/posts/2019-07-12-rpi3-netboot/nm-connection-editor_2.png)
-![3](/assets/images/posts/2019-07-12-rpi3-netboot/nm-connection-editor_3.png)
+![nm-connection-editor_1](/assets/images/posts/2019-07-12-rpi3-netboot/nm-connection-editor_1.png)
+![nm-connection-editor_2](/assets/images/posts/2019-07-12-rpi3-netboot/nm-connection-editor_2.png)
+![nm-connection-editor_3](/assets/images/posts/2019-07-12-rpi3-netboot/nm-connection-editor_3.png)
 
 <!--
 [TODO] - Add
