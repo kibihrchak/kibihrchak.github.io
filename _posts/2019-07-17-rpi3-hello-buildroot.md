@@ -43,10 +43,14 @@ $ git clone https://git.buildroot.net/buildroot
 (br-build-dir)$ make -C <br-repo-dir> O="$(pwd)" menuconfig
 ```
 
-## Configuration
+## Configuration, Build
 
 For the configuration I've used `raspberrypi3_defconfig` file as a base,
-not the A64 version -
+not the A64 version. General info on the setup, and what to expect as a
+build output can be seen in
+`<br-repo-dir>/board/raspberrypi3/readme.txt`.
+
+Here are the executed commands -
 
 ```bash
 (br-build-dir)$ make raspberrypi3_defconfig
@@ -58,11 +62,22 @@ Important changes made on the RPi3 defconfig -
 1.  `BR2_DEFCONFIG="$(O)/defconfig"` - Save defconfig locally, don't
     overwrite the RPi3 one.
 3.  `BR2_ROOTFS_POST_SCRIPT_ARGS=""` - Remove overlay for BT mini UART
-    use, we're going to use it for the console. For more info, check
-    `<br-repo-dir>/board/raspberrypi3/post-build.sh`.
+    use, we're going to use it for the console.
 
 The defconfig file [is
 here](/assets/files/posts/2019-07-17-rpi3-hello-buildroot/defconfig).
+
+Regarding the post script arguments, for more info check
+`<br-repo-dir>/board/raspberrypi3/post-image.sh`.
+
+With that cleared, do -
+
+```bash
+(br-build-dir)$ make
+```
+
+It should take an hour or so, and some GiB of disk space to do the
+build.
 
 ## Deployment, Customization
 
