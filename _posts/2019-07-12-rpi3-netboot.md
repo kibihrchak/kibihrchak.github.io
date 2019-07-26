@@ -99,33 +99,20 @@ I've configured the VM guest network adapter through Xubuntu's
 ![nm-connection-editor_2](/assets/images/posts/2019-07-12-rpi3-netboot/nm-connection-editor_2.png)
 ![nm-connection-editor_3](/assets/images/posts/2019-07-12-rpi3-netboot/nm-connection-editor_3.png)
 
-<!--
-[TODO] - Add
-
 #### Netplan
 
-Other option would be to use the netplan. For that Networkd service
-first have to be enabled -
+Alternatively, netplan can be used to configure the network adapter for
+us.
 
-```bash
-$ sudo systemctl status systemd-networkd.service
-$ sudo systemctl enable systemd-networkd.service
-$ sudo systemctl start systemd-networkd.service
-```
+The sample netplan file is given
+[here](/assets/files/posts/2019-07-12-rpi3-netboot/02-rpi-bridged-network.yaml).
+Take note of the interface name, it may have to be updated.
 
-The netplan would look like this -
-
-```bash
-```
-
-After adding it, run
+It should be placed in `/etc/netplan`. Then, netplan should be updated -
 
 ```bash
 $ sudo netplan apply
 ```
-
-Then wait some time.
--->
 
 ### NFS Server
 
@@ -300,6 +287,8 @@ discussion on that topic][buster-boot-fail].
 *   [rpi-dl] : Download page for Raspbian images.
 *   [buster-boot-fail] : Raspbian Buster freeze issue discussion.
 *   [otpbits] : OTP bits description.
+*   [netplan-config] : Guide to setting netplan.
+*   [netplan-examples] : Netplan examples.
 
 [netboot]: <https://www.raspberrypi.org/documentation/hardware/raspberrypi/bootmodes/net.md>
 [nettut]: <https://www.raspberrypi.org/documentation/hardware/raspberrypi/bootmodes/net_tutorial.md>
@@ -309,4 +298,6 @@ discussion on that topic][buster-boot-fail].
 [rpi-dl]: <https://downloads.raspberrypi.org/>
 [buster-boot-fail]: <https://www.raspberrypi.org/forums/viewtopic.php?p=1496972>
 [otpbits]: <https://www.raspberrypi.org/documentation/hardware/raspberrypi/otpbits.md>
+[netplan-config]: <https://vitux.com/how-to-configure-networking-with-netplan-on-ubuntu/>
+[netplan-examples]: <https://netplan.io/examples>
 
