@@ -101,8 +101,8 @@ I've configured the VM guest network adapter through Xubuntu's
 
 #### Netplan
 
-Alternatively, netplan can be used to configure the network adapter for
-us.
+Alternatively, netplan (`netplan.io` package) can be used to configure
+the network adapter for us.
 
 The sample netplan file is given
 [here](/assets/files/posts/2019-07-12-rpi3-netboot/02-rpi-bridged-network.yaml).
