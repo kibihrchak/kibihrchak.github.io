@@ -1,0 +1,1 @@
+dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=/dev/nfs nfsroot=192.168.100.1:/nfs/rpi,vers=3 rw ip=dhcp rootwait elevator=deadline modprobe.blacklist=bcm2835_v4l2

@@ -1,0 +1,21 @@
+Vagrant.configure('2') do |config|
+  config.vm.box = "generic/ubuntu1804"
+
+  # Add a bridged adapter - Actual adapter has to be selected by hand
+  config.vm.network "public_network", auto_config: false
+
+  config.vm.provider "virtualbox" do |v|
+    # Uncomment if SSHing doesn't work to inspect the VM
+    #v.gui = true
+
+    v.memory = 1024
+    v.cpus = 1
+  end
+
+  config.vm.provision 'chef_zero' do |chef|
+    chef.cookbooks_path = "cookbooks"
+    chef.add_recipe 'hello_rpi'
+    chef.nodes_path = 'nodes'
+    chef.custom_config_path = "CustomConfiguration.chef"
+  end
+end
