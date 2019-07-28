@@ -60,6 +60,8 @@ Setup is the same as in the base post, except for one difference -
 192.168.100.0/24 address range will be used, guest having the address
 192.168.100.1.
 
+<!-- [TODO] Add a chapter on the infrastructure configuration files -->
+
 # Setup Procedure
 
 1.  Set up host VM - Install VirtualBox and Vagrant, and pick up
