@@ -73,9 +73,8 @@ Setup is the same as in the base post, except for one difference -
 Software installation should be straightforward, no issues encountered
 there.
 
-As for the infrastructure configuration files, they can be found [in
-this directory][infra-config], or can be taken through this blog repo
-from GitHub.
+As for the infrastructure configuration files, they can be found in the
+page's GitHub repo, [this directory][infra-config].
 
 ## Provisioning
 
@@ -154,7 +153,7 @@ Other observations made while working on this are -
 *   [buster-boot-fail] : Raspbian Buster boot freeze issue discussion.
 
 [rpi-network-boot]: <{{ site.baseurl }}{% post_url 2019-07-12-rpi3-netboot %}>
-[infra-config]: </assets/files/posts/2019-07-27-rpi3-devenv-provisioning/>
+[infra-config]: <https://github.com/kibihrchak/kibihrchak.github.io/tree/master/assets/files/posts/2019-07-27-rpi3-devenv-provisioning>
 
 [vagrant-intro]: <https://www.vagrantup.com/intro/index.html>
 [chef-solo-intro]: <https://docs.chef.io/chef_solo.html>
