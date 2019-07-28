@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "RPi - Provisionging Netboot Environment"
+title:  "RPi - Provisioning Netboot Environment"
 date:   2019-07-27 00:36 +0200
 categories: embedded rpi vagrant chef
 ---
