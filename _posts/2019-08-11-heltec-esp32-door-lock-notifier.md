@@ -9,7 +9,9 @@ categories: embedded heltec esp32 ifttt
 
 *   ESP32 in general
 *   Project outline
-*   Hardware setup
+*   System components setup
+    *   Hardware
+    *   IFTTT
 *   Firmware overview
 *   Results
 
