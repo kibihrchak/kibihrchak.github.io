@@ -1,0 +1,25 @@
+@startuml
+
+package "Apartment" {
+    [Router]                    as  rou
+    [Heltec WiFi LoRa 32]       as  esp
+    [Battery]                   as  bat
+    [Door lock]                 as  lck
+}
+
+cloud "Internet" {
+    [IFTTT]                     as  ift
+    [Telegram]                  as  tel
+}
+
+[Phone]                     as phn
+
+
+esp -l->    lck     :   Detects lock/unlock
+esp -d-     bat
+esp -r->    rou     :   WiFi connection
+rou -r->    ift     :   Send update
+ift -r->    tel     :   Send notification
+tel -->     phn     :   Send message
+
+@enduml
