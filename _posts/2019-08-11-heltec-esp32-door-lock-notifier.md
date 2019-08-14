@@ -41,11 +41,29 @@ Here's a schematic overview of the system components -
 
 A couple of issues were tackled during the prototyping.
 
-### Detect Door Lock/Unlock [TODO]
+### Detect Door Lock/Unlock
 
-### Increase The Module Autonomy
+First question that appeared was - How to detect door lock/unlock event?
 
-As the module is running on a battery, it would be preferrable to lower
+The preferred way would be to use the movement of the lock deadbolt to
+determine the transition between locked/unlocked state. This has a
+benefit that the perceived state can quite certainly correspond to the
+actual state.
+
+As for detecting this transition, the straightforward way would be to
+use a micro switch installed in the door frame, so that it gets closed
+by a deadbolt going in the frame. But, the cheaper and faster option for
+the prototyping purpose is to use the fact that deadbolts are made of
+metal in order to be strong enough. Metal deadbolt, being conductive,
+can itself serve as a part of a switch. Additional hardware would then
+require just two additional leaf contacts leading to the used Heltec
+board pins.
+
+[TODO] Mechanism diagram
+
+### Module Autonomy
+
+As the module is running on a battery, it would be preferable to lower
 its power consumption so that it can operate for the extended period of
 time. Of course, connecting it on an USB adapter would be the best
 solution, but there were none close to the door and stretching the
@@ -94,6 +112,7 @@ picture-in-picture" allowfullscreen></iframe>
     Arduino library.
 *   [esp-comparison-table] : ESP8266/ESP32 comparison table.
 *   [esp32-trm] : ESP32 technical reference manual.
+*   [deep-sleep-sketch] : ESP32 deep sleep sample sketch.
 
 [sketch-repo]: <https://github.com/kibihrchak/door-lock-notifier>
 
@@ -103,3 +122,4 @@ picture-in-picture" allowfullscreen></iframe>
 [heltec-esp32-arduino-lib]: <https://github.com/HelTecAutomation/Heltec_ESP32>
 [esp-comparison-table]: <https://www.cnx-software.com/2016/03/25/esp8266-and-esp32-differences-in-one-single-table/>
 [esp32-trm]: <https://www.espressif.com/sites/default/files/documentation/esp32_technical_reference_manual_en.pdf>
+[deep-sleep-sketch]: <https://github.com/espressif/arduino-esp32/tree/master/libraries/ESP32/examples/DeepSleep/ExternalWakeUp>
