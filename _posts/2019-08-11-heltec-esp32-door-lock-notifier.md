@@ -20,7 +20,7 @@ door, so there would be a good place to try out the new module. [TODO]
 
 # ESP32 [TODO]
 
-*   What is ESP32? [esp32]
+*   What is ESP32? [esp32-wiki]
     *   Comparison with ESP8266 [esp-comparison-table]
 *   Chip/Module portfolio [esp32-hardware]
 *   How to develop for them [esp32-development] - Arduino IDE, ESP-IDF
@@ -135,7 +135,8 @@ picture-in-picture" allowfullscreen></iframe>
 
 # Resources
 
-*   [esp32] : Overview of MCU and the ESP32-based boards.
+*   [esp32-wiki] : Overview of MCU and the ESP32-based boards.
+*   [esp32-net]: Page with pretty much everything on ESP32.
 *   [esp-comparison-table] : ESP8266/ESP32 comparison table.
 *   [esp32-hardware] : Comprehensive overview of ESP32 chips and
     modules.
@@ -153,7 +154,8 @@ picture-in-picture" allowfullscreen></iframe>
 *   [deep-sleep-sketch] : ESP32 deep sleep sample sketch.
 *   [sketch-repo] : Sketch repo.
 
-[esp32]: <https://en.wikipedia.org/wiki/ESP32>
+[esp32-wiki]: <https://en.wikipedia.org/wiki/ESP32>
+[esp32-net]: <http://esp32.net/>
 [esp-comparison-table]: <https://www.cnx-software.com/2016/03/25/esp8266-and-esp32-differences-in-one-single-table/>
 [esp32-hardware]: <http://esp32.net/#Hardware>
 [esp32-development]: <http://esp32.net/#Development>
