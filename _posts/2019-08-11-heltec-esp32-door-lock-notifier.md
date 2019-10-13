@@ -1,59 +1,96 @@
 ---
 layout: post
 title:  "Heltec ESP32 Door Lock Notifier"
-date:   2019-08-11 12:55 +0200
+date:   2019-10-13 19:18 +0200
 categories: embedded heltec esp32 ifttt
 ---
 
 # Overview
 
-Last week I've recalled that some month ago I've bought 2 Heltec's ESP32
-modules, and after checking them out if they work put them in a drawer
-where they stayed ever since. So, thought it would be good to dust them
-off and give them a try, especially that I haven't worked with Espressif
-microcontrollers before.
+About a year ago I've bought 2 Heltec's ESP32 modules, and after
+checking them out if they work put them in a drawer where they stayed
+ever since. Thought it would be good to dust them off and give them a
+try, especially that I haven't worked with Espressif microcontrollers
+before.
 
 After some initial research on the MCU/module, an idea came to me to
 make as a mini learning project a door lock notifier. Ever once in a
-while I have that "did I leave the oven on?" moment with the apartment
-door, so there would be a good place to try out the new module. [TODO]
+while I have that "did I lock the door or not?" moment with the
+apartment door, so that would be a good place to put the these modules
+to use.
 
-# ESP32 [TODO]
+# ESP32
 
-*   What is ESP32? [esp32-wiki]
-    *   Comparison with ESP8266 [esp-comparison-table]
-*   Chip/Module portfolio [esp32-hardware]
-*   How to develop for them [esp32-development] - Arduino IDE, ESP-IDF
-*   TRM [esp32-trm]
+First, onto ESP32. In short, this is an MCU with 32b CPU and a whole
+bunch of peripherals, most notably integrated WiFi/BT module. Quick
+overview can be found on a [Wiki page][esp32-wiki].
 
-## Heltec WiFi LoRa 32 [TODO]
+Its predecessor was ESP8266, most notably known through
+[NodeMcu][node-mcu]. For a comparison what has changed, there's a
+[comparison with ESP8266][esp-comparison-table].
 
-*   Heltec WiFi LoRa 32 module [heltec-wifi-lora-32]
-    ![Heltec WiFi LoRa 32](/assets/images/posts/2019-08-11-heltec-esp32-door-lock-notifier/heltec-wifi-lora-32.jpg)
-    *   What are important features?
-*   Resources [module-resources]
+As for the ESP32-relevant information, the best repository is the
+[esp32.net][esp32-net]. There you can find -
 
-## Arduino IDE [TODO]
+*   [Chip/module portfolio][esp32-hardware]
+*   [How to do the development][esp32-development] - Arduino IDE,
+    ESP-IDF
 
-*   How to set it up - board, library? [esp32-arduino-install] [heltec-esp32-arduino-lib]
-*   How to use it from VSCode? [arduino-vscode-extension]
+In addition to this, TRM can be found on the [Espressif official
+webpage][esp32-trm].
 
-# Door Lock Notifier [TODO]
+## Heltec WiFi LoRa 32
+
+Module that I have at hands is the [Heltec's WiFi LoRa 32
+module][heltec-wifi-lora-32]. Here's how it looks live -
+
+![Heltec WiFi LoRa 32](/assets/images/posts/2019-08-11-heltec-esp32-door-lock-notifier/heltec-wifi-lora-32.jpg)
+
+In addition to all the ESP32 goodies, it also incorporates the following
+features, first and the last found to be useful for this project -
+
+*   A small OLED display
+*   SX1276/1278 LoRa chip
+*   Lithium battery interface
+
+Useful stuff on the module (pinout, schematics, lib examples) can be
+found on Heltec repos -
+
+*   [Schematics, pinouts, general libraries examples][module-resources]
+*   [Module-specific examples][heltec-esp32-arduino-lib]
+
+## (Arduino) IDE
+
+Next, the question is regarding the IDE for ESP32 modules, which one can
+be used. There are two reasonable options -
+
+*   Using Heltec's ESP-IDF
+*   Using Arduino IDE
+
+I've went with the second option because it seemed as a faster way to
+perform some quick prototyping. Here are some resources on setting up
+the work environment -
+
+*   [Arduino board, library setup][heltec-esp32-arduino-lib]
+*   [How to use it from VSCode][arduino-vscode-extension]
+
+# Door Lock Notifier
 
 As for the mini project, the concept is following:
 
 1.  Let the module somehow detect that the door has locked/unlocked.
-2.  Upon detecting the change, connect to local WiFi AP, then to the
-    IFTTT server, and send a POST request containing the update message.
+2.  Upon detecting the change, connect to local Internet-enabled WiFi
+    AP, through it to the IFTTT server, and send a POST request
+    containing the update message.
 3.  IFTTT will then using its Telegram bot generate a new message in the
     messenger.
 4.  This message can then be observed via phone.
 
-Here's a schematic overview of the system components -
+Here's an overview of the system components -
 
 ![connection diagram](/assets/images/posts/2019-08-11-heltec-esp32-door-lock-notifier/connection-diagram.png)
 
-## Development Decisions [TODO]
+## Development Decisions
 
 ### Detect Door Lock/Unlock
 
@@ -71,14 +108,15 @@ the prototyping purpose is to use the fact that deadbolts are made of
 metal in order to be strong enough. Metal deadbolt, being conductive,
 can itself serve as a part of a switch. Additional hardware would then
 require just two additional leaf contacts leading to the used Heltec
-board pins.
+board pins. Here's how it looks like from side -
 
-[TODO] Mechanism diagram
+![connection diagram](/assets/images/posts/2019-08-11-heltec-esp32-door-lock-notifier/deadbolt-sketch.jpg)
 
 ### Connection to IFTTT Server
 
-*   Connection over WiFi. [wifi-sketch]
-*   HTTPS connection [https-get-request]
+For connecting to the IFTTT server [WiFi Client example
+sketch][wifi-sketch] has been used, spiced up with [the example on how
+to do HTTPS connection][https-get-request].
 
 ### Module Autonomy
 
@@ -97,46 +135,66 @@ deep-sleep one, with -
 *   And most importantly for fast prototyping, Arduino example sketch
 
 So, the solution was to use the door lock detection switch as a wake-up
-source, and set the wake-up level opposite of the last read out.
+source, and set the wake-up level opposite of the last read out. [Deep
+sleep Arduino example][deep-sleep-sketch] has been used as a basis for
+it.
 
-[deep-sleep-sketch]
+## System Components
 
-### Notification Mechanism [TODO]
+### Notification Mechanism
 
-*   Use of Telegram.
+Notification chain for IFTTT looks like -
 
-## System Components [TODO]
+1.  Set up web request with `esp32_reading` event name.
+2.  Send message to Telegram private chat with IFTTT bot with following
+    format:
+    {% raw %}```
+    What: {{EventName}}<br>
+    When: {{OccurredAt}}<br>
+    Door status: {{Value1}}<br>
+    {% endraw %}```
 
-### Notification Mechanism [TODO]
 
-*   How to set up IFTTT?
-*   How to try it out?
+### Notifier
 
-### Notifier [TODO]
+Hardware outline is this -
 
-*   Hardware setup
-    ![hw-setup](/assets/images/posts/2019-08-11-heltec-esp32-door-lock-notifier/hw-setup.jpg)
-    *   Pinout
-*   Arduino sketch [repo][sketch-repo]
+1.  Connect Heltec board to battery and leaf-contact simulating wires.
+2.  Use breadboard to hold everything together.
 
-## Results [TODO]
+Here's how it looks like -
 
-*   Behavior description.
+![hw-setup](/assets/images/posts/2019-08-11-heltec-esp32-door-lock-notifier/hw-setup.jpg)
 
+Here is the connection table for the used pins based on the [pinout
+diagram][module-resources]:
+
+|Pin            |Use
+|---            |---
+|GND            |Leaf wire 1
+|0 (PRG button) |Leaf wire 2
+
+As for the Arduino sketch, it's uploaded to the [GitHub
+repo][sketch-repo].
+
+## Results
+
+Here's the live demonstration -
 <iframe width="560" height="315"
 src="https://www.youtube.com/embed/mfEv6WS8OTA" frameborder="0"
 allow="accelerometer; autoplay; encrypted-media; gyroscope;
 picture-in-picture" allowfullscreen></iframe>
 
-## Other Notes [TODO]
+During the use, two main observed issues were:
 
-*   Module quality - Missing WiFi on another module
-    *   Photo
+1.  Sporadic triggering.
+2.  Battery drain.
 
 # Resources
 
 *   [esp32-wiki] : Overview of MCU and the ESP32-based boards.
-*   [esp32-net]: Page with pretty much everything on ESP32.
+*   [esp32-net] : Page with pretty much everything on ESP32.
+*   [node-mcu] : NodeMcu page.
 *   [esp-comparison-table] : ESP8266/ESP32 comparison table.
 *   [esp32-hardware] : Comprehensive overview of ESP32 chips and
     modules.
@@ -156,6 +214,7 @@ picture-in-picture" allowfullscreen></iframe>
 
 [esp32-wiki]: <https://en.wikipedia.org/wiki/ESP32>
 [esp32-net]: <http://esp32.net/>
+[node-mcu]: <https://www.nodemcu.com/index_en.html>
 [esp-comparison-table]: <https://www.cnx-software.com/2016/03/25/esp8266-and-esp32-differences-in-one-single-table/>
 [esp32-hardware]: <http://esp32.net/#Hardware>
 [esp32-development]: <http://esp32.net/#Development>
