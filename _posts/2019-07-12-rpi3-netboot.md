@@ -5,8 +5,6 @@ date:   2019-07-12 22:15 +0200
 categories: embedded rpi
 ---
 
-# Overview
-
 Here's an overview of the setup made for booting a Raspberry Pi over
 network. Goal was to achieve boot using boot partition and root
 partition from a development machine, in order to speed up test process

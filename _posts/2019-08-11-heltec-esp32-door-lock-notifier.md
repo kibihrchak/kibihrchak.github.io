@@ -5,8 +5,6 @@ date:   2019-10-13 19:18 +0200
 categories: embedded heltec esp32 ifttt
 ---
 
-# Overview
-
 About a year ago I've bought 2 Heltec's ESP32 modules, and after
 checking them out if they work put them in a drawer where they stayed
 ever since. Thought it would be good to dust them off and give them a

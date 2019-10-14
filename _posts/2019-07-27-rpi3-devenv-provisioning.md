@@ -5,8 +5,6 @@ date:   2019-07-27 00:36 +0200
 categories: embedded rpi vagrant chef
 ---
 
-# Overview
-
 The software environment setup done in [the post on booting the RPi over
 network][rpi-network-boot] had an environment set up by hand - Virtual
 machine, package installation, configuration, image deployment etc. This

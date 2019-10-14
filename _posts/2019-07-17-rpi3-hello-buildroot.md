@@ -5,8 +5,6 @@ date:   2019-07-17 21:57 +0200
 categories: embedded rpi buildroot
 ---
 
-# Overview
-
 This is the try to do the basic Buildroot image build for Raspberry Pi.
 Built image will then be booted over network, using the setup made in
 [the previous post][rpi-network-boot].
