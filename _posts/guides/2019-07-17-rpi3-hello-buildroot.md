@@ -1,6 +1,6 @@
 ---
 title:  "RPi - Basic Buildroot Image"
-categories: embedded rpi buildroot
+tags: embedded rpi buildroot
 ---
 
 This is the try to do the basic Buildroot image build for Raspberry Pi.
@@ -157,4 +157,4 @@ Sent SI[   27.388058] reboot: Power down
 
 [buildroot]: <https://buildroot.org/>
 [bootlin]: <https://bootlin.com/training/buildroot/>
-[rpi-network-boot]: <{{ site.baseurl }}{% post_url 2019-07-12-rpi3-netboot %}>
+[rpi-network-boot]: <{{ site.baseurl }}{% post_url guides/2019-07-12-rpi3-netboot %}>

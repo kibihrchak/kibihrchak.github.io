@@ -1,6 +1,6 @@
 ---
 title:  "RPi - Provisioning Netboot Environment"
-categories: embedded rpi vagrant chef
+tags: embedded rpi vagrant chef
 ---
 
 The software environment setup done in [the post on booting the RPi over
@@ -150,7 +150,7 @@ Other observations made while working on this are -
     VirtualBox.
 *   [buster-boot-fail] : Raspbian Buster boot freeze issue discussion.
 
-[rpi-network-boot]: <{{ site.baseurl }}{% post_url 2019-07-12-rpi3-netboot %}>
+[rpi-network-boot]: <{{ site.baseurl }}{% post_url guides/2019-07-12-rpi3-netboot %}>
 [infra-config]: <https://github.com/kibihrchak/kibihrchak.github.io/tree/master/assets/files/posts/2019-07-27-rpi3-devenv-provisioning>
 
 [vagrant-intro]: <https://www.vagrantup.com/intro/index.html>

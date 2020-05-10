@@ -28,9 +28,15 @@ theme: minima
 defaults:
   -
     scope:
+      path: ""
       type: "posts"
     values:
       layout: "post"
+    scope:
+      path: "_posts/guides"
+      type: "posts"
+    values:
+      category: "guides"
 
 
 # Theme config
