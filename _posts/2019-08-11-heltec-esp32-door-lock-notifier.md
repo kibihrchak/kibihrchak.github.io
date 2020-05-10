@@ -175,11 +175,8 @@ repo][sketch-repo].
 
 ## Results
 
-Here's the live demonstration -
-<iframe width="560" height="315"
-src="https://www.youtube.com/embed/mfEv6WS8OTA" frameborder="0"
-allow="accelerometer; autoplay; encrypted-media; gyroscope;
-picture-in-picture" allowfullscreen></iframe>
+Here's the live demonstration - [YouTube
+video](https://www.youtube.com/watch?v=mfEv6WS8OTA).
 
 During the use, two main observed issues were:
 
