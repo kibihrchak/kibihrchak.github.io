@@ -22,15 +22,19 @@ github_username:  kibihrchak
 
 # Build settings
 markdown: kramdown
-remote_theme: mmistakes/so-simple-theme
-plugins:
-  - jekyll-feed
+theme: minima
+
+# Front matter configuration
+defaults:
+  -
+    scope:
+      type: "posts"
+    values:
+      layout: "post"
+
 
 # Theme config
-category_archive_path: "/categories/#"
-tag_archive_path: "/tags/#"
-read_time: true
-words_per_minute: 200
+show_excerpts: true
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
