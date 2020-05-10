@@ -41,6 +41,10 @@ defaults:
 
 # Theme config
 show_excerpts: true
+header_pages:
+  - categories.md
+  - tags.md
+  - about.md
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
