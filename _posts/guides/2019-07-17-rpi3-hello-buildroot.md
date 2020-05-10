@@ -61,7 +61,7 @@ Important changes made on the RPi3 defconfig -
     use, we're going to use it for the console.
 
 The defconfig file [is
-here](/assets/files/posts/2019-07-17-rpi3-hello-buildroot/defconfig).
+here](/assets/posts/guides/2019-07-17-rpi3-hello-buildroot/defconfig).
 
 Regarding the post script arguments, for more info check
 `<br-repo-dir>/board/raspberrypi3/post-image.sh`.
@@ -84,8 +84,8 @@ the previous article. Important changes are related to:
 2.  Setting console to mini UART.
 
 Modified config files are -
-[cmdline](/assets/files/posts/2019-07-17-rpi3-hello-buildroot/cmdline.txt),
-[config](/assets/files/posts/2019-07-17-rpi3-hello-buildroot/config.txt).
+[cmdline](/assets/posts/guides/2019-07-17-rpi3-hello-buildroot/cmdline.txt),
+[config](/assets/posts/guides/2019-07-17-rpi3-hello-buildroot/config.txt).
 
 ## Run
 

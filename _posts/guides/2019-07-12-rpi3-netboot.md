@@ -24,7 +24,7 @@ Aim here was to have a successful boot, and be able to SSH to the RPi.
 
 Here's the photo of the hardware setup -
 
-![hw-setup](/assets/images/posts/2019-07-12-rpi3-netboot/hw-setup.jpg)
+![hw-setup](/assets/posts/guides/2019-07-12-rpi3-netboot/hw-setup.jpg)
 
 ## Concrete Versions
 
@@ -91,9 +91,9 @@ I've configured the VM guest network adapter through Xubuntu's
 [TODO] - Provide smaller version of photos
 -->
 
-![nm-connection-editor_1](/assets/images/posts/2019-07-12-rpi3-netboot/nm-connection-editor_1.png)
-![nm-connection-editor_2](/assets/images/posts/2019-07-12-rpi3-netboot/nm-connection-editor_2.png)
-![nm-connection-editor_3](/assets/images/posts/2019-07-12-rpi3-netboot/nm-connection-editor_3.png)
+![nm-connection-editor_1](/assets/posts/guides/2019-07-12-rpi3-netboot/nm-connection-editor_1.png)
+![nm-connection-editor_2](/assets/posts/guides/2019-07-12-rpi3-netboot/nm-connection-editor_2.png)
+![nm-connection-editor_3](/assets/posts/guides/2019-07-12-rpi3-netboot/nm-connection-editor_3.png)
 
 #### Netplan
 
@@ -101,7 +101,7 @@ Alternatively, netplan (`netplan.io` package) can be used to configure
 the network adapter for us.
 
 The sample netplan file is given
-[here](/assets/files/posts/2019-07-12-rpi3-netboot/02-rpi-bridged-network.yaml).
+[here](/assets/posts/guides/2019-07-12-rpi3-netboot/02-rpi-bridged-network.yaml).
 Take note of the interface name, it may have to be updated.
 
 It should be placed in `/etc/netplan`. Then, netplan should be updated -

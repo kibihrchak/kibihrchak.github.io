@@ -40,7 +40,7 @@ webpage][esp32-trm].
 Module that I have at hands is the [Heltec's WiFi LoRa 32
 module][heltec-wifi-lora-32]. Here's how it looks live -
 
-![Heltec WiFi LoRa 32](/assets/images/posts/2019-08-11-heltec-esp32-door-lock-notifier/heltec-wifi-lora-32.jpg)
+![Heltec WiFi LoRa 32](/assets/posts/guides/2019-08-11-heltec-esp32-door-lock-notifier/heltec-wifi-lora-32.jpg)
 
 In addition to all the ESP32 goodies, it also incorporates the following
 features, first and the last found to be useful for this project -
@@ -84,7 +84,7 @@ As for the mini project, the concept is following:
 
 Here's an overview of the system components -
 
-![connection diagram](/assets/images/posts/2019-08-11-heltec-esp32-door-lock-notifier/connection-diagram.png)
+![connection diagram](/assets/posts/guides/2019-08-11-heltec-esp32-door-lock-notifier/connection-diagram.png)
 
 ## Development Decisions
 
@@ -106,7 +106,7 @@ can itself serve as a part of a switch. Additional hardware would then
 require just two additional leaf contacts leading to the used Heltec
 board pins. Here's how it looks like from side -
 
-![connection diagram](/assets/images/posts/2019-08-11-heltec-esp32-door-lock-notifier/deadbolt-sketch.jpg)
+![connection diagram](/assets/posts/guides/2019-08-11-heltec-esp32-door-lock-notifier/deadbolt-sketch.jpg)
 
 ### Connection to IFTTT Server
 
@@ -160,7 +160,7 @@ Hardware outline is this -
 
 Here's how it looks like -
 
-![hw-setup](/assets/images/posts/2019-08-11-heltec-esp32-door-lock-notifier/hw-setup.jpg)
+![hw-setup](/assets/posts/guides/2019-08-11-heltec-esp32-door-lock-notifier/hw-setup.jpg)
 
 Here is the connection table for the used pins based on the [pinout
 diagram][module-resources]:

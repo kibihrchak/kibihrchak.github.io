@@ -151,7 +151,7 @@ Other observations made while working on this are -
 *   [buster-boot-fail] : Raspbian Buster boot freeze issue discussion.
 
 [rpi-network-boot]: <{{ site.baseurl }}{% post_url guides/2019-07-12-rpi3-netboot %}>
-[infra-config]: <https://github.com/kibihrchak/kibihrchak.github.io/tree/master/assets/files/posts/2019-07-27-rpi3-devenv-provisioning>
+[infra-config]: <https://github.com/kibihrchak/kibihrchak.github.io/tree/master/assets/posts/guides/2019-07-27-rpi3-devenv-provisioning/infra-config>
 
 [vagrant-intro]: <https://www.vagrantup.com/intro/index.html>
 [chef-solo-intro]: <https://docs.chef.io/chef_solo.html>
