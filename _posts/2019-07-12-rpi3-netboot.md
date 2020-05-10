@@ -1,7 +1,5 @@
 ---
-layout: post
 title:  "RPi Booting over Network"
-date:   2019-07-12 22:15 +0200
 categories: embedded rpi
 ---
 
@@ -298,4 +296,3 @@ discussion on that topic][buster-boot-fail].
 [otpbits]: <https://www.raspberrypi.org/documentation/hardware/raspberrypi/otpbits.md>
 [netplan-config]: <https://vitux.com/how-to-configure-networking-with-netplan-on-ubuntu/>
 [netplan-examples]: <https://netplan.io/examples>
-

@@ -2,8 +2,6 @@
 title: Categories
 layout: page
 permalink: /categories/
-show_excerpts: true
-entries_layout: list
 ---
 
 {% for category in site.categories %}

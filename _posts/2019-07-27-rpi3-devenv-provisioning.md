@@ -1,7 +1,5 @@
 ---
-layout: post
 title:  "RPi - Provisioning Netboot Environment"
-date:   2019-07-27 00:36 +0200
 categories: embedded rpi vagrant chef
 ---
 
@@ -165,4 +163,3 @@ Other observations made while working on this are -
 [chef-resources]: <https://docs.chef.io/resource_reference.html>
 [vagrant-naming]: <https://stackoverflow.com/questions/17845637>
 [buster-boot-fail]: <https://www.raspberrypi.org/forums/viewtopic.php?p=1496972>
-

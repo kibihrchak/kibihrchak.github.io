@@ -1,7 +1,5 @@
 ---
-layout: post
 title:  "RPi - Basic Buildroot Image"
-date:   2019-07-17 21:57 +0200
 categories: embedded rpi buildroot
 ---
 
@@ -160,4 +158,3 @@ Sent SI[   27.388058] reboot: Power down
 [buildroot]: <https://buildroot.org/>
 [bootlin]: <https://bootlin.com/training/buildroot/>
 [rpi-network-boot]: <{{ site.baseurl }}{% post_url 2019-07-12-rpi3-netboot %}>
-

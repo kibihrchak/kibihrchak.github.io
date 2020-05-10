@@ -2,8 +2,6 @@
 title: Tags
 layout: page
 permalink: /tags/
-show_excerpts: true
-entries_layout: list
 ---
 
 {% for tag in site.tags %}

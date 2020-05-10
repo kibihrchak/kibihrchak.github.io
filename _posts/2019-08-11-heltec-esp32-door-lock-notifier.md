@@ -1,7 +1,5 @@
 ---
-layout: post
 title:  "Heltec ESP32 Door Lock Notifier"
-date:   2019-10-13 19:18 +0200
 categories: embedded heltec esp32 ifttt
 ---
 
