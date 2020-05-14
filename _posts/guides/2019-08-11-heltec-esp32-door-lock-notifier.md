@@ -1,6 +1,6 @@
 ---
-title:  "Heltec ESP32 Door Lock Notifier"
-tags: embedded heltec esp32 ifttt
+title:      "Heltec ESP32 Door Lock Notifier"
+tags:       embedded heltec esp32 ifttt
 ---
 
 About a year ago I've bought 2 Heltec's ESP32 modules, and after

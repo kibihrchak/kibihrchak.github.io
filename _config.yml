@@ -25,13 +25,17 @@ theme: minima
 
 # Front matter configuration
 defaults:
-  -
-    scope:
+  - scope:
       path: ""
       type: "posts"
     values:
       layout: "post"
-    scope:
+  - scope:
+      path: "_posts/articles"
+      type: "posts"
+    values:
+      category: "articles"
+  - scope:
       path: "_posts/guides"
       type: "posts"
     values:

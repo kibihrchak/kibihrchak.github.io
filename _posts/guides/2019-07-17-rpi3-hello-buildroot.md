@@ -1,6 +1,6 @@
 ---
-title:  "RPi - Basic Buildroot Image"
-tags: embedded rpi buildroot
+title:      "RPi - Basic Buildroot Image"
+tags:       embedded rpi buildroot
 ---
 
 This is the try to do the basic Buildroot image build for Raspberry Pi.

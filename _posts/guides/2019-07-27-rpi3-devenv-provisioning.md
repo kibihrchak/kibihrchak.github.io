@@ -1,6 +1,6 @@
 ---
-title:  "RPi - Provisioning Netboot Environment"
-tags: embedded rpi vagrant chef
+title:      "RPi - Provisioning Netboot Environment"
+tags:       embedded rpi vagrant chef
 ---
 
 The software environment setup done in [the post on booting the RPi over
