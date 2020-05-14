@@ -1,6 +1,6 @@
 ---
-title:  "Visual Studio Code and CMake (and Other Tools)"
-tags: development-environment vscode cmake clang static-analysis
+title:      "Visual Studio Code and CMake (and Other Tools)"
+tags:       development-environment vscode cmake clang static-analysis
 ---
 
 Visual Studio Code and C/C++ project development? Let's see how they

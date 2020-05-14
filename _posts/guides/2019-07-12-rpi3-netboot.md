@@ -1,6 +1,6 @@
 ---
-title:  "RPi Booting over Network"
-tags: embedded rpi
+title:      "RPi Booting over Network"
+tags:       embedded rpi
 ---
 
 Here's an overview of the setup made for booting a Raspberry Pi over
