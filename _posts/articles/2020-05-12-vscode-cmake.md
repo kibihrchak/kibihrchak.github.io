@@ -37,36 +37,36 @@ best, dumb notepad at worst.
 There were previous interests for regaining this connection between a
 development environment and a code editor, but with short longevity.
 This state of affairs went on as I got introduced to a
-[VSCode](https://code.visualstudio.com/). Ditching it first as a coding
-hipsters kind of a tool, especially seeing it in light of web
-development where it first took ahold, I was reluctant to try it out,
-sticking rather to a proven Vim text editing environment. But, gradually
-I transitioned to it, mostly driven by a liking of its workspace
-management and a suitable enough Vim extension. With time it became my
-main file projects management tool, providing almost all-in-one
-environment for needed operations.
+[VSCode](https://code.visualstudio.com/). I've ditched it first as a
+coding hipsters kind of a tool, especially seeing it in light of web
+development where it first took ahold. Instead, I've stuck rather to a
+proven Vim text editing environment. But, gradually I transitioned to
+VSCode, mostly driven by liking of its workspace management and a
+suitable enough Vim extension. With time it became my main file projects
+management tool, providing almost all-in-one environment for needed
+operations.
 
 So, with that in mind I've revisited the old topic of bridging a gap
 between a code editor and a the build system. The question was, can
 Visual Studio Code be connected with a C/C++ set up console-driven build
 system, and assist in the code development while relying on the project
-configuration specified there? And, initial result seem to yield a
-positive answer.
+configuration specified outside of it?
 
 # Setting The Stage
 
-First question was, what would be the assumed build system to attach to?
-[CMake](https://cmake.org/) here came out as a first candidate, as it is
-a project configure/build/test/package toolkit popular enough, and with
-which I had most previous experience. Plain Makefiles are also a good
-option, but more suitable for simpler task specification, other toolkits
-I haven't considered.
+First topic to clarify was, what would be the assumed build system to
+attach to? [CMake](https://cmake.org/) here came out as a first
+candidate, as it is a popular-enough project
+configure/build/test/package toolkit, and with which I had most previous
+experience. As for the other options, plain Makefiles are also a good
+option but more suitable for simpler task specification, and other
+toolkits I haven't considered at all.
 
-Second question was, what would be the expectations from the
-integration? From the top of the head first would be code assistance
-aligned with selected build configuration, that is with selected source
-files to be built, included includes and libraries, and project defines.
-Next in line would be interface for running build system tasks, then
+Second topic was, what would be the expectations from the integration?
+From the top of the head first would be code assistance aligned with
+selected build configuration, that is with selected source files to be
+built, included includes and libraries, and project defines. Next in
+line would be interface for running build system tasks, then
 configuration of the debugger so that a debug session can be ran from
 VSCode. As a last addition, integration with code writing assistance
 tools, namely a formatter and a static analysis would be great, with
@@ -86,13 +86,16 @@ VSCode -
 for code assistance and formatting, and
 [`ms-vscode.cmake-tools`](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
 for CMake integration. With them, and with other prerequisite packages
-installed in the evaluation VM, I was set to go.
+installed in the evaluation VM (gdb, clang-format, clang-tidy), I was
+set to go.
 
 # Initial Impressions
 
-In short, positive. Integration works fine, code assistance works for
-the opened projects, even if CMake contains subprojects with same-named
-symbols. Debugging, too, avoiding non-compiled code.
+In short, positive. Code assistance works for the opened projects, even
+if CMake contains subprojects with same-named symbols. Interface also
+works without a hitch - Configuring project, building it, running
+particular subproject. Debugging, too, non-compiled code gets ignored
+just fine.
 
 For the additional tools, VSCode invokes formatting per given
 configuration, while static analysis is enabled through CMake and ran
@@ -102,10 +105,10 @@ altogether with squiggly lines.
 
 # What Next?
 
-Well, even with good initial findings there's still some of that nagging
+Well, good initial findings are there, but there's still that nagging
 feeling about disjuncture between the build system and code editor.
-Additional test projects and the use of this integration on the actual
-projects seems like a sure way to address it.
+Guess it will need some additional test projects and the use of this
+integration on the actual projects to dispel that impression.
 
 If you want to check it out, current VSCode workspace with test projects
 I have hosted on GitHub - [here's a repo
