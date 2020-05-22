@@ -3,6 +3,15 @@ title:      "RPi - Provisioning Netboot Environment"
 tags:       embedded rpi vagrant chef
 ---
 
+Chef Who Joined The Vagrant.
+
+# Table of Contents
+
+1.  TOC
+{:toc}
+
+# Overview
+
 The software environment setup done in [the post on booting the RPi over
 network][rpi-network-boot] had an environment set up by hand - Virtual
 machine, package installation, configuration, image deployment etc. This

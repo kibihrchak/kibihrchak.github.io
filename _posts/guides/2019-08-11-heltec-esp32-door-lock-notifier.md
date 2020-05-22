@@ -3,6 +3,15 @@ title:      "Heltec ESP32 Door Lock Notifier"
 tags:       embedded heltec esp32 ifttt
 ---
 
+Did I turn on the notification that my apartment door is locked?!
+
+# Table of Contents
+
+1.  TOC
+{:toc}
+
+# Overview
+
 About a year ago I've bought 2 Heltec's ESP32 modules, and after
 checking them out if they work put them in a drawer where they stayed
 ever since. Thought it would be good to dust them off and give them a

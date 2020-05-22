@@ -3,6 +3,15 @@ title:      "RPi Booting over Network"
 tags:       embedded rpi
 ---
 
+Boot me up, Scotty!
+
+# Table of Contents
+
+1.  TOC
+{:toc}
+
+# Overview
+
 Here's an overview of the setup made for booting a Raspberry Pi over
 network. Goal was to achieve boot using boot partition and root
 partition from a development machine, in order to speed up test process

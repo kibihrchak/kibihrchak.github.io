@@ -3,6 +3,15 @@ title:      "RPi - Basic Buildroot Image"
 tags:       embedded rpi buildroot
 ---
 
+When Raspbian is not cut out for the job.
+
+# Table of Contents
+
+1.  TOC
+{:toc}
+
+# Overview
+
 This is the try to do the basic Buildroot image build for Raspberry Pi.
 Built image will then be booted over network, using the setup made in
 [the previous post][rpi-network-boot].
