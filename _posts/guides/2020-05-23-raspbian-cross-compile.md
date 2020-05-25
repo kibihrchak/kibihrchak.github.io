@@ -1,6 +1,6 @@
 ---
 title:      "Cross-compile Program for Raspbian"
-tags:       rpi cmake raspbian
+tags:       rpi cmake raspbian cross-compilation
 ---
 
 "Hello, Raspbian from a more capable build machine!\n"
@@ -12,8 +12,8 @@ tags:       rpi cmake raspbian
 
 # Overview
 
-Goal is to set up the cross-compilation environment on an Ubuntu-based
-machine and build a "Hello, world!" program for the target.
+Goal is to set up a cross-compilation environment on an Ubuntu-based
+machine and build a "Hello, world!" CMake project for the target.
 
 Setup used for testing is -
 
@@ -40,13 +40,13 @@ Notes:
 1.  RPi repo has several toolchains. Select one per [this
     article][deardevices_rpi-cross-compile].
 
-# Setup Procedure
+# Environment/Project Setup Procedure
 
 1.  Checkout this repo with test CMake projects - [GitHub
     link][hello-vscode-cmake].
 2.  Set up the RPi test project per its readme.
 
-# Building The Binaries
+# Building The Project
 
 1.  Run configure/build for CMake (`<project>/build$ cmake .. && make`).
 2.  Built binaries are in CMake subproject subdirectories.
