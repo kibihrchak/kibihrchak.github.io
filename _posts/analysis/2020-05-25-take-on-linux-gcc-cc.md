@@ -115,9 +115,14 @@ Quick look on Linux shared library versioning -
     416: 000d1620  7039 FUNC    GLOBAL DEFAULT   16 glob64@@GLIBC_2.27
     ```
 
-# GCC Build
+# GCC
 
-Autoconf system definition - `<arch>-<vendor>-<os>-<libc/abi>`.
+GCC cross-compiler prefix - Autoconf system canonical name -
+`<arch>-<vendor>-<os>-<libc/abi>`.
+
+## Build Process
+
+Build by steps -
 
 |Tool           |Use on |Expected in    |Note
 |---            |---    |---            |---
@@ -128,16 +133,16 @@ Autoconf system definition - `<arch>-<vendor>-<os>-<libc/abi>`.
 |Libc           |Target |Sysroot        |-
 |2nd stage GCC  |H/T(1) |Pref/Sysroot(1)|Need to know libc names/vers(2)
 
+Notes:
+
 1.  Libgcc built for target.
 2.  Changing Libc requires GCC rebuild!
-Prefix/sysroot relationship - Relative path.
+3.  Prefix/sysroot relationship - Relative path.
+4.  Used architecture, ABI - Cannot be changed without rebuild for:
+    1.  Libgcc
+    2.  C standard library
 
-Used architecture, ABI - Cannot be changed without rebuild
-
-1.  Libgcc
-2.  C standard library
-
-Toolchain directory contents:
+## Toolchain Directory Contents
 
 1.  GCC requires binutils names without prefix
 2.  Standard C++ library considered as a build-up to C library
@@ -158,7 +163,7 @@ Cross-compiler stuff and where's it going to end up -
 |Binaries               |Build platform
 |Documentation          |Build platform
 
-# Alternative Takes
+## GCC Use Alternative Takes
 
 1.  Build GCC using prebuilt Glibc - Won't work
 2.  Build newer GCC than the one used on target - Works, although libgcc
@@ -182,6 +187,8 @@ https://youtu.be/Pbt330zuNPc?t=1695 - What is built when and why
 *   [gcc_build-config] : GCC build - Configuration options.
 *   [bootlin_emblin_slides] : General information on cross-compilers.
 *   [tldp_so] : Naming, version info on shared libraries.
+*   [redhat_lib-if-vers] : How library does interface versioning.
+*   [autoconf_gcc-prefix] : Cross-compiler GCC prefix format.
 
 [bootlin_cctc_slides]: <https://bootlin.com/pub/conferences/2016/elce/petazzoni-toolchain-anatomy/petazzoni-toolchain-anatomy.pdf>
 [bootlin_cctc_rec]: <https://youtu.be/Pbt330zuNPc>
@@ -189,3 +196,5 @@ https://youtu.be/Pbt330zuNPc?t=1695 - What is built when and why
 [gcc_build-config]: <https://gcc.gnu.org/install/configure.html>
 [bootlin_emblin_slides]: <https://bootlin.com/doc/training/embedded-linux/embedded-linux-slides.pdf>
 [tldp_so]: <http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html>
+[redhat_lib-if-vers]: <https://developers.redhat.com/blog/2019/08/01/how-the-gnu-c-library-handles-backward-compatibility/>
+[autoconf_gcc-prefix]: <https://www.gnu.org/software/autoconf/manual/autoconf-2.69/html_node/System-Type.html#System-Type>
