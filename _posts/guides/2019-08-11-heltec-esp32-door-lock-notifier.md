@@ -5,12 +5,12 @@ tags:       embedded heltec esp32 ifttt
 
 Did I turn on the notification that my apartment door is locked?!
 
-# Table of Contents
+## Table of Contents
 
 1.  TOC
 {:toc}
 
-# Overview
+## Overview
 
 About a year ago I've bought 2 Heltec's ESP32 modules, and after
 checking them out if they work put them in a drawer where they stayed
@@ -24,7 +24,7 @@ while I have that "did I lock the door or not?" moment with the
 apartment door, so that would be a good place to put the these modules
 to use.
 
-# ESP32
+## ESP32
 
 First, onto ESP32. In short, this is an MCU with 32b CPU and a whole
 bunch of peripherals, most notably integrated WiFi/BT module. Quick
@@ -44,7 +44,7 @@ As for the ESP32-relevant information, the best repository is the
 In addition to this, TRM can be found on the [Espressif official
 webpage][esp32-trm].
 
-## Heltec WiFi LoRa 32
+### Heltec WiFi LoRa 32
 
 Module that I have at hands is the [Heltec's WiFi LoRa 32
 module][heltec-wifi-lora-32]. Here's how it looks live -
@@ -64,7 +64,7 @@ found on Heltec repos -
 *   [Schematics, pinouts, general libraries examples][module-resources]
 *   [Module-specific examples][heltec-esp32-arduino-lib]
 
-## (Arduino) IDE
+### (Arduino) IDE
 
 Next, the question is regarding the IDE for ESP32 modules, which one can
 be used. There are two reasonable options -
@@ -79,7 +79,7 @@ the work environment -
 *   [Arduino board, library setup][heltec-esp32-arduino-lib]
 *   [How to use it from VSCode][arduino-vscode-extension]
 
-# Door Lock Notifier
+## Door Lock Notifier
 
 As for the mini project, the concept is following:
 
@@ -95,9 +95,9 @@ Here's an overview of the system components -
 
 ![connection diagram](/assets/posts/guides/2019-08-11-heltec-esp32-door-lock-notifier/connection-diagram.png)
 
-## Development Decisions
+### Development Decisions
 
-### Detect Door Lock/Unlock
+#### Detect Door Lock/Unlock
 
 First question that appeared was - How to detect door lock/unlock event?
 
@@ -117,13 +117,13 @@ board pins. Here's how it looks like from side -
 
 ![connection diagram](/assets/posts/guides/2019-08-11-heltec-esp32-door-lock-notifier/deadbolt-sketch.jpg)
 
-### Connection to IFTTT Server
+#### Connection to IFTTT Server
 
 For connecting to the IFTTT server [WiFi Client example
 sketch][wifi-sketch] has been used, spiced up with [the example on how
 to do HTTPS connection][https-get-request].
 
-### Module Autonomy
+#### Module Autonomy
 
 As the module is running on a battery, it would be preferable to lower
 its power consumption so that it can operate for the extended period of
@@ -144,9 +144,9 @@ source, and set the wake-up level opposite of the last read out. [Deep
 sleep Arduino example][deep-sleep-sketch] has been used as a basis for
 it.
 
-## System Components
+### System Components
 
-### Notification Mechanism
+#### Notification Mechanism
 
 Notification chain for IFTTT looks like -
 
@@ -160,7 +160,7 @@ Notification chain for IFTTT looks like -
     {% endraw %}```
 
 
-### Notifier
+#### Notifier
 
 Hardware outline is this -
 
@@ -182,7 +182,7 @@ diagram][module-resources]:
 As for the Arduino sketch, it's uploaded to the [GitHub
 repo][sketch-repo].
 
-## Results
+### Results
 
 Here's the live demonstration - [YouTube
 video](https://www.youtube.com/watch?v=mfEv6WS8OTA).
@@ -192,7 +192,7 @@ During the use, two main observed issues were:
 1.  Sporadic triggering.
 2.  Battery drain.
 
-# Resources
+## Resources
 
 *   [esp32-wiki] : Overview of MCU and the ESP32-based boards.
 *   [esp32-net] : Page with pretty much everything on ESP32.

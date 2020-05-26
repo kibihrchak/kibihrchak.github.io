@@ -5,12 +5,12 @@ tags:       rpi cmake raspbian cross-compilation
 
 "Hello, Raspbian from a more capable build machine!\n"
 
-# Table of Contents
+## Table of Contents
 
 1.  TOC
 {:toc}
 
-# Overview
+## Overview
 
 Goal is to set up a cross-compilation environment on an Ubuntu-based
 machine and build a "Hello, world!" CMake project for the target.
@@ -23,7 +23,7 @@ Setup used for testing is -
 |Target OS          |Raspbian Buster Lite, February 2020
 |Target platform    |Raspberry Pi 3 Model B
 
-# Cross-Compilation Toolchain Selection
+## Cross-Compilation Toolchain Selection
 
 Here, the main point is to obtain the cross-compilation toolchain for
 RPi. The important thing is that this toolchain produces binaries which
@@ -40,13 +40,13 @@ Notes:
 1.  RPi repo has several toolchains. Select one per [this
     article][deardevices_rpi-cross-compile].
 
-# Environment/Project Setup Procedure
+## Environment/Project Setup Procedure
 
 1.  Checkout this repo with test CMake projects - [GitHub
     link][hello-vscode-cmake].
 2.  Set up the RPi test project per its readme.
 
-# Building The Project
+## Building The Project
 
 1.  Run configure/build for CMake (`<project>/build$ cmake .. && make`).
 2.  Built binaries are in CMake subproject subdirectories.
@@ -56,7 +56,7 @@ Notes:
     HelloRaspbianCrossPiGcc: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, for GNU/Linux 3.2.0, with debug_info, not stripped
     ```
 
-# Resources
+## Resources
 
 *   [toolchain_rpi] : Overview of MCU and the ESP32-based boards.
 *   [toolchain_pro] : Page with pretty much everything on ESP32.
@@ -74,6 +74,6 @@ Notes:
 [cmake-cross-compile]: <https://cmake.org/cmake/help/v3.17/manual/cmake-toolchains.7.html#cross-compiling-for-linux>
 [deardevices_rpi-cross-compile]: <https://deardevices.com/2019/04/18/how-to-crosscompile-raspi/>
 
-# To-Do
+## To-Do
 
 1.  Checklist for toolchain suitability for the given target. 

@@ -5,12 +5,12 @@ tags:       embedded rpi vagrant chef
 
 Chef Who Joined The Vagrant.
 
-# Table of Contents
+## Table of Contents
 
 1.  TOC
 {:toc}
 
-# Overview
+## Overview
 
 The software environment setup done in [the post on booting the RPi over
 network][rpi-network-boot] had an environment set up by hand - Virtual
@@ -21,7 +21,7 @@ Aim is to automate the setup of environment from that post, so that it
 is possible to network boot prepared RPi (USB host booting OTP boot bit
 set, SD card prepared) immediately from it.
 
-# Process Outline
+## Process Outline
 
 Plan is to use [Vagrant][vagrant-intro]/[Chef Solo][chef-solo-intro]
 combination for an automated VM bring-up, and infrastructure
@@ -44,12 +44,12 @@ deployed RPi image configuration.
 After these steps are performed, it would be sufficient just to plug in
 RPi as in the previous post, and it should boot without issues.
 
-# HW/SW Setup Outline
+## HW/SW Setup Outline
 
 Setup from the base post is recreated here. Update SW versions are given
 below.
 
-## Concrete Versions
+### Concrete Versions
 
 |Item                       |Value
 |---                        |---
@@ -59,7 +59,7 @@ below.
 |Chef Solo                  |Most recent (Chef Infra Client: 15.1.36)
 |RPi image                  |Stated in the Chef recipe 
 
-## Network Setup
+### Network Setup
 
 Setup is the same as in the base post, except for one difference -
 192.168.100.0/24 address range will be used, guest having the address
@@ -67,7 +67,7 @@ Setup is the same as in the base post, except for one difference -
 
 <!-- [TODO] Add a chapter on the infrastructure configuration files -->
 
-# Setup Procedure
+## Setup Procedure
 
 1.  Set up host VM - Install VirtualBox and Vagrant, and pick up
     infrastructure configuration files.
@@ -75,7 +75,7 @@ Setup is the same as in the base post, except for one difference -
 3.  Boot, try RPi.
 4.  Stop the Vagrant machine.
 
-## Set Up
+### Set Up
 
 Software installation should be straightforward, no issues encountered
 there.
@@ -83,7 +83,7 @@ there.
 As for the infrastructure configuration files, they can be found in the
 page's GitHub repo, [this directory][infra-config].
 
-## Provisioning
+### Provisioning
 
 In order to start the provisioning run the command below, with
 `infra-config-dir` being the directory where files from the previous
@@ -106,7 +106,7 @@ provisioning, with final message being something like -
 ==> default: Chef Infra Client finished, 26/31 resources updated in 06 minutes 53 seconds
 ```
 
-## Boot RPi
+### Boot RPi
 
 Here, it is sufficient to (re)plug the RPi power source, and it will
 boot successfully. For tracking the boot progress at the moment some
@@ -115,7 +115,7 @@ host serial console can be used.
 <!-- [TODO] Modify Vagrantfile so that the serial adapter connects to
 the VM; Update this chapter -->
 
-## Stop The Vagrant Machine
+### Stop The Vagrant Machine
 
 To stop the machine, one of these two commands can be used:
 
@@ -124,7 +124,7 @@ To stop the machine, one of these two commands can be used:
 (infra-config-dir)$ vagrant halt
 ```
 
-# Notes
+## Notes
 
 Other observations made while working on this are -
 
@@ -144,7 +144,7 @@ Other observations made while working on this are -
     booting on RPi3. Fix from [this post][buster-boot-fail] is applied,
     and it works.
 
-# Resources
+## Resources
 
 *   [vagrant-intro] : Info on Vagrant.
 *   [chef-solo-intro] : Info on Chef Solo.

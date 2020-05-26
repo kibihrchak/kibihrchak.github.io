@@ -5,12 +5,12 @@ tags:       embedded rpi
 
 Boot me up, Scotty!
 
-# Table of Contents
+## Table of Contents
 
 1.  TOC
 {:toc}
 
-# Overview
+## Overview
 
 Here's an overview of the setup made for booting a Raspberry Pi over
 network. Goal was to achieve boot using boot partition and root
@@ -20,7 +20,7 @@ on the Raspbian image.
 
 Aim here was to have a successful boot, and be able to SSH to the RPi.
 
-# HW/SW Setup Outline
+## HW/SW Setup Outline
 
 1.  Have a Raspberry Pi connected over ETH directly to the PC running
     Windows.
@@ -35,7 +35,7 @@ Here's the photo of the hardware setup -
 
 ![hw-setup](/assets/posts/guides/2019-07-12-rpi3-netboot/hw-setup.jpg)
 
-## Concrete Versions
+### Concrete Versions
 
 |Item                       |Value
 |---                        |---
@@ -45,7 +45,7 @@ Here's the photo of the hardware setup -
 |Virtualization software    |VirtualBox 6.0.8
 |RPi image                  |Raspbian Stretch lite
 
-## Network Setup
+### Network Setup
 
 The idea is to have 3 devices on the same network -
 
@@ -57,7 +57,7 @@ The idea is to have 3 devices on the same network -
 
 Dynamic addresses will be provided by the guest OS DHCP server.
 
-## Served Directories
+### Served Directories
 
 Directories served by the servers in the guest OS are -
 
@@ -66,7 +66,7 @@ Directories served by the servers in the guest OS are -
 |TFTP       |`/tftpboot`
 |NFS        |`/nfs/rpi`
 
-# Setup Procedure
+## Setup Procedure
 
 Here is the overview of steps I did to bring up RPi to life over
 network. Notes on particular steps are given below.
@@ -83,14 +83,14 @@ network. Notes on particular steps are given below.
     below.
 5.  Cross fingers, and boot.
 
-## VM Setup
+### VM Setup
 
 Network adapter is attached to a bridged adapter, "Allow All"
 promiscuous mode.
 
-## Guest OS Setup
+### Guest OS Setup
 
-### Network Adapter Setup
+#### Network Adapter Setup
 
 I've configured the VM guest network adapter through Xubuntu's
 `nm-connection-editor`. Here are the screenshots -
@@ -104,7 +104,7 @@ I've configured the VM guest network adapter through Xubuntu's
 ![nm-connection-editor_2](/assets/posts/guides/2019-07-12-rpi3-netboot/nm-connection-editor_2.png)
 ![nm-connection-editor_3](/assets/posts/guides/2019-07-12-rpi3-netboot/nm-connection-editor_3.png)
 
-#### Netplan
+##### Netplan
 
 Alternatively, netplan (`netplan.io` package) can be used to configure
 the network adapter for us.
@@ -119,7 +119,7 @@ It should be placed in `/etc/netplan`. Then, netplan should be updated -
 $ sudo netplan apply
 ```
 
-### NFS Server
+#### NFS Server
 
 Here's the content of the exports file -
 
@@ -136,7 +136,7 @@ Export list for 192.168.1.1:
 /nfs/rpi 192.168.0.0/24
 ```
 
-### Dnsmasq
+#### Dnsmasq
 
 The only uncommented part of `/etc/dnsmasq.conf` is -
 
@@ -150,7 +150,7 @@ tftp-root=/tftpboot
 pxe-service=0,"Raspberry Pi Boot"
 ```
 
-### Serial Port
+#### Serial Port
 
 Picocom is used for serial console -
 
@@ -159,9 +159,9 @@ $ sudo apt install picocom
 $ sudo usermod -a -G dialout $(whoami)
 ```
 
-## Deploying Image Partitions
+### Deploying Image Partitions
 
-### Populating TFTP/NFS Mounted Directories
+#### Populating TFTP/NFS Mounted Directories
 
 Important difference here is that I've transferred the files from the
 image by mounting it inside the VM as a read-only, and then cp-ing, or
@@ -179,7 +179,7 @@ $ sudo mount -t auto -o offset=50331648,ro ~/temp/2019-04-08-raspbian-stretch-li
 $ sudo mount -t auto -o offset=4194304,ro ~/temp/2019-04-08-raspbian-stretch-lite.img /mnt/rpi/boot
 ```
 
-### Configuring Image
+#### Configuring Image
 
 Changes made to the files are -
 
@@ -189,7 +189,7 @@ Changes made to the files are -
 *   Skipped SSH keys regeneration.
 *   Also, don't forget editing of `/nfs/rpi/etc/fstab`!
 
-## RPi Preparation
+### RPi Preparation
 
 Had to set the OTP register 17 bit 29 to enable USB host booting. Did
 that with the RPi image from a SD card. Useful info on the OTP found on
@@ -201,7 +201,7 @@ After that, formatted card to one FAT32 partition, and copied
 succeed like one in 10 times, if at all. More info in issues section.
 
 
-## Running RPi with Network Boot
+### Running RPi with Network Boot
 
 Useful tools for tracking the boot process are:
 
@@ -225,7 +225,7 @@ Then, all that was left was to SSH to the RPi, prod the home directory
 and check if the changes appear in the served NFS directory on the guest
 OS.
 
-# Issues
+## Issues
 
 Overall, network booting RPi seems like a tricky issue. [Network booting
 page][nettut] states that -
@@ -238,7 +238,7 @@ page][nettut] states that -
 Particular issue where this workaround helps has been encountered, and
 addressed below.
 
-## RPi not Sending BOOTP Request
+### RPi not Sending BOOTP Request
 
 This issue appears when trying to boot RPi without a SD card. It is
 visible when using `tcpdump`. Here's the snippet what is sniffed from
@@ -273,14 +273,14 @@ that did not help me out, tried 1s and 3s delay.
 
 Useful info on the issue can be found [in this forum post][bootcode].
 
-## Buster Image Boot Freeze
+### Buster Image Boot Freeze
 
 At a time of this check new Raspbian image appeared -
 `2019-06-20-raspbian-buster-lite.img`. Trying it out resulted in a
 frozen boot some time after mounting NFS root. Here's the [forum
 discussion on that topic][buster-boot-fail].
 
-# Resources
+## Resources
 
 *   [netboot] : Network booting info - Bootloader process, issues.
 *   [nettut] : Setting up network booting for RPi server - booted RPi

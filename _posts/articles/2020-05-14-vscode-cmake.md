@@ -6,7 +6,7 @@ tags:       development-environment vscode cmake clang static-analysis
 Visual Studio Code and C/C++ project development? Let's see how they
 work together.
 
-# Separation of Paths
+## Separation of Paths
 
 When started with C/C++ software development, I didn't give much thought
 on the integration of components that make an IDE. Basically, what I did
@@ -32,7 +32,7 @@ a false image on the project code, and went as far as ditching them
 altogether and demoting the code editor to a intelligent text editor at
 best, dumb notepad at worst.
 
-# Enter VSCode
+## Enter VSCode
 
 There were previous interests for regaining this connection between a
 development environment and a code editor, but with short longevity.
@@ -52,7 +52,7 @@ Visual Studio Code be connected with a C/C++ set up console-driven build
 system, and assist in the code development while relying on the project
 configuration specified outside of it?
 
-# Setting The Stage
+## Setting The Stage
 
 First topic to clarify was, what would be the assumed build system to
 attach to? [CMake](https://cmake.org/) here came out as a first
@@ -78,7 +78,7 @@ For formatting and static analysis choice fell on the Clang toolkit,
 they're good free tools, with configuration specifiable in config files,
 and with good preexisting integration to VSCode and CMake.
 
-# Add Extensions to The Mix
+## Add Extensions to The Mix
 
 Basically, to get things running all I needed were two extensions for
 VSCode -
@@ -89,7 +89,7 @@ for CMake integration. With them, and with other prerequisite packages
 installed in the evaluation VM (gdb, clang-format, clang-tidy), I was
 set to go.
 
-# Initial Impressions
+## Initial Impressions
 
 In short, positive. Code assistance works for the opened projects, even
 if CMake contains subprojects with same-named symbols. Interface also
@@ -103,7 +103,7 @@ before the compilation unit build. What made me smile is that the
 reported analysis findings are shown in the code editor window
 altogether with squiggly lines.
 
-# What Next?
+## What Next?
 
 Well, good initial findings are there, but there's still that nagging
 feeling about disjuncture between the build system and code editor.

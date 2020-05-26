@@ -5,12 +5,12 @@ tags:       embedded rpi buildroot
 
 When Raspbian is not cut out for the job.
 
-# Table of Contents
+## Table of Contents
 
 1.  TOC
 {:toc}
 
-# Overview
+## Overview
 
 This is the try to do the basic Buildroot image build for Raspberry Pi.
 Built image will then be booted over network, using the setup made in
@@ -19,25 +19,25 @@ Built image will then be booted over network, using the setup made in
 Aim is to get it boot successfully, and be able to login through the
 serial console.
 
-# HW/SW Setup Outline
+## HW/SW Setup Outline
 
 Check [the previous post][rpi-network-boot] for this. Only the new
 items are stated here.
 
-## Concrete Versions
+### Concrete Versions
 
 |Item                       |Value
 |---                        |---
 |Buildroot                  |2019.05
 
-# Setup Procedure
+## Setup Procedure
 
 1.  Get the Buildroot.
 2.  Configure Buildroot, and do the build.
 3.  Deploy and customize the built image.
 4.  Run, enjoy.
 
-## Get The Buildroot
+### Get The Buildroot
 
 I've cloned the Buildroot Git repository in `<br-repo-dir>`, and set up
 the out-of-tree build in `<br-build-dir>` -
@@ -48,7 +48,7 @@ $ git clone https://git.buildroot.net/buildroot
 (br-build-dir)$ make -C <br-repo-dir> O="$(pwd)" menuconfig
 ```
 
-## Configuration, Build
+### Configuration, Build
 
 For the configuration I've used `raspberrypi3_defconfig` file as a base,
 not the A64 version. General info on the setup, and what to expect as a
@@ -84,7 +84,7 @@ With that cleared, do -
 It should take an hour or so, and some GiB of disk space to do the
 build.
 
-## Deployment, Customization
+### Deployment, Customization
 
 Deployment is done in `/tftpboot`, and `/nfs/rpi` directories, set up in
 the previous article. Important changes are related to:
@@ -96,7 +96,7 @@ Modified config files are -
 [cmdline](/assets/posts/guides/2019-07-17-rpi3-hello-buildroot/cmdline.txt),
 [config](/assets/posts/guides/2019-07-17-rpi3-hello-buildroot/config.txt).
 
-## Run
+### Run
 
 For tracking the boot process, see [the previous
 post][rpi-network-boot].
@@ -158,7 +158,7 @@ Sent SIGTERM to all processes
 Sent SI[   27.388058] reboot: Power down
 ```
 
-# Resources
+## Resources
 
 *   [buildroot] : Official Buildroot page, and download location.
 *   [bootlin] : Excellent guide on Buildroot use.
