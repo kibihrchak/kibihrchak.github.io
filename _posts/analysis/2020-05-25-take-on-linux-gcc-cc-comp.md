@@ -1,9 +1,9 @@
 ---
-title:      "A Take on GCC Linux Cross-Compilation"
+title:      "A Take on GCC Linux Cross-Compilation Compatibility"
 tags:       cross-compilation gcc linux libc
 ---
 
-`arm-linux-gnueabihf`, almost usable for all platforms.
+`arm-linux-gnueabihf`, almost usable for all ARM platforms.
 
 # Table of Contents
 
@@ -12,83 +12,102 @@ tags:       cross-compilation gcc linux libc
 
 # Overview
 
+This topic started as a search for a more modern GCC version for
+cross-compiling the programs for Raspbian, and then turned into an
+all-out compatibility research on what it takes to cross-compile
+software, and be sure it's going to run without issues on the target
+platform. The original topic got [its own dedicated guide][raspbian-cc],
+and the rest of stuff collected on cross-compilation compatibility got
+slated for a dedicated analysis post, that is, this one.
+
 This is a look on what consists a cross-compiler toolkit for a Linux
 target, what are its specifics, and as the subtitle says, why is a
 cross-compiler tied to a particular target even if the toolkit name
 prefix sounds generic enough so that it can cover a multitude of
 platforms. And at last, why that sometimes may be the case.
 
+As a process to answer that question, here's the outline of covered
+topics -
+
+*   First there's a refresher on cross-compilation
+*   There's a look on what are the relevant parameters for
+    cross-compilation
+*   A look at what makes a shared libraries compatible
+*   What is the GCC cross-compiler build process
+*   What are the assumed pitfalls of cross-compilation toolkit use
+
 # Cross-Compilation 101
 
-Here's a quick refresher on cross-compilation.
-
-Cross compilation
-:   A process of building code on one machine that is to be executed on
-    another (potentially incompatible) machine.
+Cross compilation in a nutshell is a process of building code on one
+machine that is to be executed on another (potentially incompatible)
+machine.
 
 As this process considers using different machines (execution platforms,
 that is), here's a recap of these -
 
-|Machine    |Purpose
-|---        |---
-|Build      |Builds the compiler
-|Host       |Runs the compiler
-|Target     |Executes the compiled code
+|Machine    |Purpose                        |Built artifact
+|---        |---                            |---
+|Build      |Builds the compiler            |Cross-compiler toolkit
+|Host       |Runs the compiler              |Cross-compiled user program
+|Target     |Executes the compiled code     |-
 
-And here's a recap of different build types -
+And here's a recap of different build types and the corresponding
+machines -
 
-|Build name     |Compiler built on  |Compiler ran on|Built code ran on
-|---            |---                |---            |---
-|Native         |A                  |A              |A
-|Cross          |A                  |A              |B
-|Cross-native   |A                  |B              |B
-|Canadian cross |A                  |B              |C
+|Build name/Machine |Build  |Host   |Target |Example
+|---                |---    |---    |---    |---
+|Native             |A      |A      |A      |Local compilation
+|Cross              |A      |A      |B      |For MCU target
+|Cross-native       |A      |B      |B      |-
+|Canadian cross     |A      |B      |C      |-
 
-# Parameters and Compatibility
+# Cross-Compilation Parameters and Compatibility
 
-Next, onto what parameters impact the resulting cross-compiler.
+Here's a summary of parameters relevant for creating a cross-compiler
+toolkit. All parameters are related to a target machine.
 
-|Parameter                  |Example        |Compatibility
+|Parameter                  |Example        |Compatibility note
 |---                        |---            |---
 |CPU architecture           |ARM            |Incompatible
 |CPU architecture variant   |ARMv6          |Backward(1)
 |ABI                        |EABI           |Variants inside ABI(2)
-|Object file format         |ELF            |Incompatible
-|OS API                     |Linux API      |Backward for Linux one
-|Standard C library(3)      |glibc          |Backward for glibc
-|Compiler runtime library   |libgcc         |Backward for libgcc
+|Object file format         |ELF            |Depends on format, linker
+|OS API                     |Linux API      |Incompatible
+|OS API version             |Linux API 3.2.0|Backward for Linux
+|Standard C library         |glibc, uclibc  |Incompatible
+|Standard C library version |glibc 2.28     |Backward for glibc
+|Compiler runtime library   |libgcc         |Incompatible
+|Compiler RT library version|libgcc 7.0.0   |Backward for libgcc
 
 Notes:
 
 1.  Eg. for ARM AArch32, or x86 sans extensions.
 2.  Eg. EABI hard-float and soft-float variants are compatible between
     themselves.
-3.  Standard library components:
-    *   Dynamic linker/loader
-    *   C library with headers
 
-Knowledge on *all of these parameters* is used when building the
-compiler.
-
-## Cross-Compilation Issues
+## Parameter Violation Effects
 
 Now, with knowledge what parameters are all involved when making a
-cross-compiler, let's see what are the potential effects of using an
-unsuitable one:
+cross-compiler, let's see what are the potential effects of setting an
+incorrect parameter value  
 
-*   Wrong CPU architecture - Invalid code execution.
-*   Unsupported CPU architecture variant - Unsupported instruction
-    execution will fail.
-*   Using incompatible ABI - Execution fails upon trying to communicate
-    with linked libraries, or when trying to invoke an OS system call.
-*   Wrong object file format - Linker/loader won't accept the file.
-*   Using wrong OS API - System calls will outright fail.
-*   Using newer OS API than the one supported - Some system call may
-    fail.
-*   Expecting newer standard C library or compiler runtime library -
-    Symbol request will fail during execution.
+|Parameter violation        |Effect
+|---                        |---
+|CPU architecture           |Code execution will crash
+|CPU architecture variant   |Crash on unsupported execution
+|ABI                        |Crash on linked library call
+|ABI                        |Crash on an OS system call
+|Object file format         |Linker/loader won't accept the file
+|OS API                     |Any system call will fail
+|OS API version             |Unsupported system calls will fail
+|Standard C library         |Linking will fail
+|Standard C library version |Linking will fail
+|Compiler runtime library   |Linking will fail
+|Compiler RT library version|Linking will fail
 
 # Linux Shared Libraries
+
+Shared libraries in Linux go under three names -
 
 |Name           |Naming example             |Note
 |---            |---                        |---
@@ -100,7 +119,8 @@ Notes:
 
 1.  Standard C libraries don't start with `lib`.
 
-Quick look on Linux shared library versioning -
+As for the shared library and their symbols versioning, here are the
+notes -
 
 1.  Linker uses library represented with latest library (one represented
     by linker name).
@@ -119,6 +139,13 @@ Quick look on Linux shared library versioning -
 
 GCC cross-compiler prefix - Autoconf system canonical name -
 `<arch>-<vendor>-<os>-<libc/abi>`.
+
+3.  Standard library components:
+    *   Dynamic linker/loader
+    *   C library with headers
+
+Knowledge on *all of these parameters* is used when building the
+compiler.
 
 ## Build Process
 
@@ -189,6 +216,7 @@ https://youtu.be/Pbt330zuNPc?t=1695 - What is built when and why
 *   [tldp_so] : Naming, version info on shared libraries.
 *   [redhat_lib-if-vers] : How library does interface versioning.
 *   [autoconf_gcc-prefix] : Cross-compiler GCC prefix format.
+*   [gcc_releases] : GCC release history.
 
 [bootlin_cctc_slides]: <https://bootlin.com/pub/conferences/2016/elce/petazzoni-toolchain-anatomy/petazzoni-toolchain-anatomy.pdf>
 [bootlin_cctc_rec]: <https://youtu.be/Pbt330zuNPc>
@@ -198,3 +226,6 @@ https://youtu.be/Pbt330zuNPc?t=1695 - What is built when and why
 [tldp_so]: <http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html>
 [redhat_lib-if-vers]: <https://developers.redhat.com/blog/2019/08/01/how-the-gnu-c-library-handles-backward-compatibility/>
 [autoconf_gcc-prefix]: <https://www.gnu.org/software/autoconf/manual/autoconf-2.69/html_node/System-Type.html#System-Type>
+[gcc_releases]: <https://gcc.gnu.org/releases.html>
+
+[raspbian-cc]: <{{ site.baseurl }}{% post_url guides/2020-05-23-raspbian-cross-compile %}>
