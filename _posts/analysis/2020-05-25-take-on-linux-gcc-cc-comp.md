@@ -5,12 +5,12 @@ tags:       cross-compilation gcc linux libc
 
 `arm-linux-gnueabihf`, almost usable for all ARM platforms.
 
-# Table of Contents
+## Table of Contents
 
 1.  TOC
 {:toc}
 
-# Overview
+## Overview
 
 This topic started as a search for a more modern GCC version for
 cross-compiling the programs for Raspbian, and then turned into an
@@ -36,7 +36,7 @@ topics -
 *   What is the GCC cross-compiler build process
 *   What are the assumed pitfalls of cross-compilation toolkit use
 
-# Cross-Compilation 101
+## Cross-Compilation 101
 
 Cross compilation in a nutshell is a process of building code on one
 machine that is to be executed on another (potentially incompatible)
@@ -61,7 +61,7 @@ machines -
 |Cross-native       |A      |B      |B      |-
 |Canadian cross     |A      |B      |C      |-
 
-# Cross-Compilation Parameters and Compatibility
+## Cross-Compilation Parameters and Compatibility
 
 Here's a summary of parameters relevant for creating a cross-compiler
 toolkit. All parameters are related to a target machine.
@@ -85,7 +85,7 @@ Notes:
 2.  Eg. EABI hard-float and soft-float variants are compatible between
     themselves.
 
-## Parameter Violation Effects
+### Parameter Violation Effects
 
 Now, with knowledge what parameters are all involved when making a
 cross-compiler, let's see what are the potential effects of setting an
@@ -105,7 +105,7 @@ incorrect parameter value
 |Compiler runtime library   |Linking will fail
 |Compiler RT library version|Linking will fail
 
-# Linux Shared Libraries
+## Linux Shared Libraries
 
 Shared libraries in Linux go under three names -
 
@@ -135,7 +135,7 @@ notes -
     416: 000d1620  7039 FUNC    GLOBAL DEFAULT   16 glob64@@GLIBC_2.27
     ```
 
-# GCC
+## GCC
 
 GCC cross-compiler prefix - Autoconf system canonical name -
 `<arch>-<vendor>-<os>-<libc/abi>`.
@@ -147,7 +147,7 @@ GCC cross-compiler prefix - Autoconf system canonical name -
 Knowledge on *all of these parameters* is used when building the
 compiler.
 
-## Build Process
+### Build Process
 
 Build by steps -
 
@@ -169,7 +169,7 @@ Notes:
     1.  Libgcc
     2.  C standard library
 
-## Toolchain Directory Contents
+### Toolchain Directory Contents
 
 1.  GCC requires binutils names without prefix
 2.  Standard C++ library considered as a build-up to C library
@@ -190,7 +190,7 @@ Cross-compiler stuff and where's it going to end up -
 |Binaries               |Build platform
 |Documentation          |Build platform
 
-## GCC Use Alternative Takes
+### GCC Use Alternative Takes
 
 1.  Build GCC using prebuilt Glibc - Won't work
 2.  Build newer GCC than the one used on target - Works, although libgcc
@@ -199,11 +199,11 @@ Cross-compiler stuff and where's it going to end up -
 4.  Using toolchain built for different machine - Works, execution not
     guaranteed.
 
-# Stash
+## Stash
 
 https://youtu.be/Pbt330zuNPc?t=1695 - What is built when and why
 
-# Resources
+## Resources
 
 *   [bootlin_cctc_slides] : "Anatomy of Cross-Compilation Toolchains"
     presentation slides.
