@@ -10,6 +10,12 @@ tags:       cross-compilation gcc linux libc
 1.  TOC
 {:toc}
 
+## Version History
+
+|Version    |Date       |Description
+|---        |---        |---
+|0.1        |2020-05-27 |Initial bare-bones post
+
 ## Overview
 
 This topic started as a search for a more modern GCC version for
