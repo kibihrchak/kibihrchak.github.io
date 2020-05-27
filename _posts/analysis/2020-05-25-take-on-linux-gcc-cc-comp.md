@@ -137,71 +137,67 @@ notes -
 
 ## GCC
 
-GCC cross-compiler prefix - Autoconf system canonical name -
-`<arch>-<vendor>-<os>-<libc/abi>`.
+### Cross-Compilation Toolkit Components
 
-3.  Standard library components:
-    *   Dynamic linker/loader
-    *   C library with headers
+Here's an overview of components, and how and where they're gonna be
+used -
 
-Knowledge on *all of these parameters* is used when building the
-compiler.
+|Component              |Use                            |Use location
+|---                    |---                            |---
+|Binaries               |Perform compilation, linking   |Host
+|C static libraries     |Link with compiled program     |Host
+|C dynamic libraries    |Link with compiled program     |Target
+|C libraries headers    |Program compilation            |Host
+|Dynamic linker/loader  |Load and link with dynamic libs|Target
+|GCC static libraries   |Link with compiled program     |Host
+|GCC dynamic libraries  |Link with compiled program     |Target
+|CRT object files       |Program compilation            |Host
+|GCC headers            |Program compilation            |Host
+|Linker scripts         |Produce object file            |Host
+|Documentation          |Get to perform tasks           |Host
 
-### Build Process
+### GCC Toolkit Build Process
 
 Build by steps -
 
-|Tool           |Use on |Expected in    |Note
-|---            |---    |---            |---
-|Binutils       |Host   |Prefix         |Linker and assembler
-|GCC dep. libs  |Host   |GCC build      |For built-time calculations
-|Kernel headers |-      |Sysroot        |For target OS
-|1st stage GCC  |Host   |Prefix         |Static C only, no libc
-|Libc           |Target |Sysroot        |-
-|2nd stage GCC  |H/T(1) |Pref/Sysroot(1)|Need to know libc names/vers(2)
+|Tool               |Note
+|---                |---
+|Binutils           |Linker and assembler most importantly
+|GCC dependency libs|Needed for build-time calculations
+|1st stage GCC      |Static C only, no libc
+|Libc               |Build both dynamic linker/loader, and C library
+|2nd stage GCC      |Libgcc built here; Need to know libc type/ver(1)
 
 Notes:
 
-1.  Libgcc built for target.
-2.  Changing Libc requires GCC rebuild!
-3.  Prefix/sysroot relationship - Relative path.
-4.  Used architecture, ABI - Cannot be changed without rebuild for:
-    1.  Libgcc
-    2.  C standard library
+1.  Changing Libc requires GCC rebuild!
 
-### Toolchain Directory Contents
+Most notably, used architecture, ABI is used for building libc and
+libgcc. This means that:
+
+1.  Whatever architecture configuration modifications are performed
+    during application build, originally built libc and libgcc are still
+    going to be used.
+2.  Any change needed necessitates rebuild for both libc and libgcc.
+
+### Cross-Compilation Toolkit Install Directory Contents
 
 1.  GCC requires binutils names without prefix
-2.  Standard C++ library considered as a build-up to C library
-3.  GCC library headers
-4.  Linker scripts
+2.  GCC cross-compiler naming prefix - Autoconf system canonical name -
+    `<arch>-<vendor>-<os>-<libc/abi>`.
+3.  Standard C++ library considered as a build-up to C library
+4.  GCC library headers
+5.  Linker scripts
 
-Cross-compiler stuff and where's it going to end up -
-
-|Stuff                  |Where
-|---                    |---
-|C static libraries     |Compiled program(1)
-|C dynamic libraries    |Target
-|C libraries headers    |Compiled program
-|GCC static libraries   |Compiled program(1)
-|CRT object files       |Compiled program
-|GCC headers            |Compiled program
-|Linker scripts         |Compiled program
-|Binaries               |Build platform
-|Documentation          |Build platform
-
-### GCC Use Alternative Takes
+## Potential Use Cases
 
 1.  Build GCC using prebuilt Glibc - Won't work
 2.  Build newer GCC than the one used on target - Works, although libgcc
     compatibility not guaranteed.
-3.  Build newer Glibc - Works, execution risky.
+3.  Build with newer Glibc than the one used on target - Works,
+    execution risky.
 4.  Using toolchain built for different machine - Works, execution not
     guaranteed.
-
-## Stash
-
-https://youtu.be/Pbt330zuNPc?t=1695 - What is built when and why
 
 ## Resources
 
