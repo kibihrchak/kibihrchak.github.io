@@ -40,6 +40,11 @@ defaults:
       type: "posts"
     values:
       category: "guides"
+  - scope:
+      path: "_posts/analysis"
+      type: "posts"
+    values:
+      category: "analysis"
 
 
 # Theme config
