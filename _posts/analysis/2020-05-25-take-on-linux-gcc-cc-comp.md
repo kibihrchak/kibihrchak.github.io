@@ -12,9 +12,9 @@ tags:       cross-compilation gcc linux libc
 
 ## Version History
 
-|Version    |Date       |Description
-|---        |---        |---
-|0.1        |2020-05-27 |Initial bare-bones post
+|Date       |Description
+|---        |---
+|2020-05-27 |Initial bare-bones post
 
 ## Overview
 
