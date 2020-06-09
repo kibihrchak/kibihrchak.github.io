@@ -10,6 +10,13 @@ When Raspbian is not cut out for the job.
 1.  TOC
 {:toc}
 
+## Version History
+
+|Date       |Description
+|---        |---
+|2020-06-09 |Add description for setting up Wi-Fi
+|2019-07-17 |Initial article
+
 ## Overview
 
 This is the try to do the basic Buildroot image build for Raspberry Pi.
@@ -158,12 +165,31 @@ Sent SIGTERM to all processes
 Sent SI[   27.388058] reboot: Power down
 ```
 
+## Setting up Wi-Fi
+
+Goal: Enable WiFi, connect to local network.
+
+*   Chip - BCM43438 (BCM43xxx).
+*   Enable `BR2_PACKAGE_RPI_WIFI_FIRMWARE`.
+    *   Not this one but `BR2_PACKAGE_LINUX_FIRMWARE_BRCM_BCM43XXX`.
+        *   Doesn't work with it.
+*   `brcmfmac` module is needed [brcmfmac].
+*   WLAN procedure from [cons_wlan].
+    *   Create key on host.
+    *   `udhcpc -i wlan0` for IP address.
+
 ## Resources
 
 *   [buildroot] : Official Buildroot page, and download location.
 *   [bootlin] : Excellent guide on Buildroot use.
 *   [rpi-network-boot] : Previous post on booting up RPi over network.
+*   [rpiwifi] : Setting up Buildroot for USB Wi-Fi adapter.
+*   [brcmfmac] : BCM43438 driver info.
+*   [cons_wlan] : Connecting from command line to Wi-Fi.
 
 [buildroot]: <https://buildroot.org/>
 [bootlin]: <https://bootlin.com/training/buildroot/>
 [rpi-network-boot]: <{{ site.baseurl }}{% post_url guides/2019-07-12-rpi3-netboot %}>
+[rpiwifi]: <https://www.digitalpeer.com/blog/wireless-on-raspberry-pi-with-buildroot>
+[brcmfmac]: <https://github.com/raspberrypi/linux/issues/2485>
+[cons_wlan]: <https://www.blackmoreops.com/2014/09/18/connect-to-wifi-network-from-command-line-in-linux/>
