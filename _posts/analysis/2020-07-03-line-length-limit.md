@@ -28,10 +28,11 @@ files matters, and also in that context, what would be the appropriate
 line length limit.
 
 While looking along the Internets, what usually appeared are the
-personal opinions heavily related to the use case and the development
-environment at hand. This analysis tries to stay impartial (even with my
-obvious preference toward 72CPL) and build up on the use cases and
-corresponding factors that would make certain approach more suitable.
+personal opinions heavily related to the implied use case and the
+development environment at hand. This analysis tries to stay impartial
+(even with my obvious preference toward 72CPL) and build up on the use
+cases and corresponding factors that would make certain approach more
+suitable.
 
 ## General Context on The Issue
 
@@ -83,7 +84,7 @@ Here, the following elements are distinguishable -
 |Document   |Table              |Non-breakable text
 |Document   |Hyperlink          |Non-breakable text
 
-### Performed Operations
+### Text Operations
 
 Next what impacts the treatment is the way text is used. In this regard,
 the following text operations are identified -
@@ -93,19 +94,43 @@ the following text operations are identified -
 3.  Diffing
 4.  Searching (grep)
 
-### Performed Operations Environment
+### Text Operations Environment
 
-1.  Development environment
-2.  Non-dev environment (mobile phone)
-3.  Web UI (GitHub, Bitbucket)
+As for the environments, here are the relevant factors:
+
+1.  Display(s) size (and orientation together with this).
+2.  Text editor:
+    1.  Text navigation/editing (eg. cursor + direct input vs. Vi
+        approach).
+    2.  Wrapping implementation for different text elements.
+    3.  Viewport size limitations (eg. serial port terminal).
+
+Some environment examples are:
+
+1.  Desktop multi-monitor widescreen setup
+2.  Laptop single monitor widescreen setup
+2.  Non-dev environment:
+    1.  Mobile phone
+    2.  Web UI (GitHub, Bitbucket, TFS)
+
+Related environmental factors are:
+
+1.  User base size - Single user vs. multiple users (with potentially
+    disjunctive development environments).
+2.  Tabs vs. spaces and tab indentation value.
+
+## CPL Limit Evaluation
 
 ### Contributing Factors
 
+Now, what comes is the list of identified factors which impacts CPL
+limit decision, together with intended operations and the environment.
+
 1.  Enforcing code writing style through CPL limit:
-    1.  Concise variable names
-    2.  Local aliasing
-    3.  Condition nesting
-    4.  Long expressions rework
+    1.  Concise variable names.
+    2.  Local aliasing.
+    3.  Condition nesting.
+    4.  Long expressions rework.
 2.  Cost of adhering to a CPL limit when creating/modifying text:
     1.  Having to break long statements when writing code.
     2.  Having to make document tables fit.
@@ -119,7 +144,11 @@ the following text operations are identified -
     3.  Wrapping of long lines depend on the text editor, and may
         produce unreadable output (eg. for code, or document tables).
     4.  If wrapping is not applied, then user need to perform horizontal
-        scrolling to read the text which breaks the flow.
+        scrolling to read the text which breaks the flow. This is esp.
+        relevant to diffing.
+    5.  For wrapped text, if it is modified it may require rewrapping
+        which will introduce modifications to the otherwise unmodified
+        text. This may make diffing difficult.
 4.  Flexibility:
     1.  CPL limit makes text rigid, and not able to adapt to the
         environment at hand (eg. smaller mobile viewport), or
@@ -142,6 +171,15 @@ the following text operations are identified -
     1.  Lower CPL limit stimulates use of narrower viewport, which
         leaves horizontal space for other windows, or stimulates
         multiple side-by-side viewport use.
+8.  Usability:
+    1.  If document file paragraphs are not broken, this makes grep
+        search for more than a single word queries possible.
+    2.  Large CPL limit may prove diffing difficult as the tools usually
+        don't wrap text, so horizontal scrolling is needed.
+
+### Decision Examples
+
+[TODO]
 
 ## Resources
 
