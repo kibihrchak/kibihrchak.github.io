@@ -23,7 +23,7 @@ tags:       formatting code line-length wrap indentation
 ## Overview
 
 Some time ago while looking through the Internets, [a Reddit post on
-Linus' rant about 80CPL limit][reddit_linus-rant] caught my attention.
+Linus' rant about 80CPL limit][reddit_linus] caught my attention.
 The gist was that 80CPL is a thing of a past, and "more reasonable"
 limit should become a norm, like 120CPL or so.
 
