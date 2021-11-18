@@ -1,0 +1,40 @@
+@startuml
+
+'   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+'   Nodes
+
+actor       "Provisioner"                       as prv
+node        "Provisioning host" <<Device>>      as phs {
+artifact    "Ansible"                           as ans
+artifact    "Testinfra"                         as tif
+}
+node        "Virtualization software"           as vsw {
+node        "Test server"                       as tsv
+}
+node        "NUC Server" <<Device>>             as srv
+node        "External HDD" <<Device>>           as hdd {
+database    "Media files"                       as mef
+}
+node        "Router" <<Device>>                 as rtr
+
+'   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+'   Relations
+
+srv     "1"     *-d-    "1"     hdd
+
+prv             -d->            tsv : Provision (manual)
+prv             -d->            srv : Provision (manual)
+prv             -d->            hdd : Provision (manual)
+prv             -r->            phs : Run automated operations
+
+ans             -->             tsv : Provision (auto)
+ans             -->             srv : Provision (auto)
+
+tif             -->             tsv : Verify setup
+tif             -->             srv : Verify setup
+
+rtr             --              prv
+rtr             --              tsv
+rtr             --              srv
+
+@enduml
