@@ -74,7 +74,7 @@ domain. Based on them, following generalized use cases are derived -
 2.  Optimal CPL when writing code and having to reference some other
     location in source tree, in a multi side-by-side viewport setup.
 3.  Not being able to wrap long lines when performing code diff in
-    VSCode, GitHub, Bitbucket.
+    VS Code, GitHub, Bitbucket.
 4.  Issue with CPL limit - Grep expressions not working across multiple
     lines.
 5.  Reading/modifying text files over limited-width terminal (embedded
@@ -116,9 +116,9 @@ may be used -
 |Operation              |Example tools
 |---                    |---
 |Navigation             |Vim, Notepad
-|Inserting/modifying    |Notepad, VSCode, Vim through terminal
-|Reading                |Terminal `less`, browser render, VSCode
-|Comparison (diffing)   |VSCode, GitHub/Bitbucket, terminal `diff`
+|Inserting/modifying    |Notepad, VS Code, Vim through terminal
+|Reading                |Terminal `less`, browser render, VS Code
+|Comparison (diffing)   |VS Code, GitHub/Bitbucket, terminal `diff`
 |Searching              |Terminal `grep`
 
 Most appropriate text file element CPL limit depends on the operation,
@@ -177,7 +177,7 @@ certain CPL limit decision.
     4.  If wrapping is not applied, then user need to perform horizontal
         scrolling to read the text which breaks the flow. This is esp.
         relevant to diffing. There:
-        1.  VSCode, Gitk, GitHub, Bitbucket, TFS do not wrap diff.
+        1.  VS Code, Gitk, GitHub, Bitbucket, TFS do not wrap diff.
         2.  `git diff` wraps diff.
     5.  For CPL limited text, if it is modified it may require
         rewrapping which will introduce modifications to the otherwise

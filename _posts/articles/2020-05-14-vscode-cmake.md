@@ -1,6 +1,6 @@
 ---
 title:      "Visual Studio Code and CMake (and Other Tools)"
-tags:       development-environment vscode cmake clang static-analysis
+tags:       development-environment vs-code cmake clang static-analysis
 ---
 
 Visual Studio Code and C/C++ project development? Let's see how they
@@ -32,16 +32,16 @@ a false image on the project code, and went as far as ditching them
 altogether and demoting the code editor to a intelligent text editor at
 best, dumb notepad at worst.
 
-## Enter VSCode
+## Enter VS Code
 
 There were previous interests for regaining this connection between a
 development environment and a code editor, but with short longevity.
 This state of affairs went on as I got introduced to a
-[VSCode](https://code.visualstudio.com/). I've ditched it first as a
+[VS Code](https://code.visualstudio.com/). I've ditched it first as a
 coding hipsters kind of a tool, especially seeing it in light of web
 development where it first took ahold. Instead, I've stuck rather to a
 proven Vim text editing environment. But, gradually I transitioned to
-VSCode, mostly driven by liking of its workspace management and a
+VS Code, mostly driven by liking of its workspace management and a
 suitable enough Vim extension. With time it became my main file projects
 management tool, providing almost all-in-one environment for needed
 operations.
@@ -68,7 +68,7 @@ selected build configuration, that is with selected source files to be
 built, included includes and libraries, and project defines. Next in
 line would be interface for running build system tasks, then
 configuration of the debugger so that a debug session can be ran from
-VSCode. As a last addition, integration with code writing assistance
+VS Code. As a last addition, integration with code writing assistance
 tools, namely a formatter and a static analysis would be great, with
 latter again aligned to the current build configuration.
 
@@ -76,12 +76,12 @@ For formatting and static analysis choice fell on the Clang toolkit,
 [ClangFormat](https://clang.llvm.org/docs/ClangFormat.html) and
 [Clang-Tidy](https://clang.llvm.org/extra/clang-tidy/), mostly because
 they're good free tools, with configuration specifiable in config files,
-and with good preexisting integration to VSCode and CMake.
+and with good preexisting integration to VS Code and CMake.
 
 ## Add Extensions to The Mix
 
 Basically, to get things running all I needed were two extensions for
-VSCode -
+VS Code -
 [`ms-vscode.cpptools`](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
 for code assistance and formatting, and
 [`ms-vscode.cmake-tools`](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
@@ -97,7 +97,7 @@ works without a hitch - Configuring project, building it, running
 particular subproject. Debugging, too, non-compiled code gets ignored
 just fine.
 
-For the additional tools, VSCode invokes formatting per given
+For the additional tools, VS Code invokes formatting per given
 configuration, while static analysis is enabled through CMake and ran
 before the compilation unit build. What made me smile is that the
 reported analysis findings are shown in the code editor window
@@ -110,6 +110,6 @@ feeling about disjuncture between the build system and code editor.
 Guess it will need some additional test projects and the use of this
 integration on the actual projects to dispel that impression.
 
-If you want to check it out, current VSCode workspace with test projects
-I have hosted on GitHub - [here's a repo
+If you want to check it out, current VS Code workspace with test
+projects I have hosted on GitHub - [here's a repo
 link](https://github.com/kibihrchak/hello-vscode-cmake).

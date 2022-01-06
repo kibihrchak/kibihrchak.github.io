@@ -77,7 +77,7 @@ perform some quick prototyping. Here are some resources on setting up
 the work environment -
 
 *   [Arduino board, library setup][heltec-esp32-arduino-lib]
-*   [How to use it from VSCode][arduino-vscode-extension]
+*   [How to use it from VS Code][arduino-vscode-extension]
 
 ## Door Lock Notifier
 
@@ -208,7 +208,7 @@ During the use, two main observed issues were:
 *   [esp32-arduino-install] : Arduino setup for ESP32 boards.
 *   [heltec-esp32-arduino-lib] : Installation procedure for Heltec ESP32
     Arduino library.
-*   [arduino-vscode-extension] : VSCode Arduino extension.
+*   [arduino-vscode-extension] : VS Code Arduino extension.
 *   [wifi-sketch] : ESP32 WiFi client sample sketch.
 *   [https-get-request] : Guide how to create GET request over HTTPS.
 *   [deep-sleep-sketch] : ESP32 deep sleep sample sketch.
