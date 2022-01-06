@@ -1,6 +1,10 @@
+#	Sourced from
+#	<https://github.com/tianon/dockerfiles/blob/master/github-pages/Dockerfile>.
+
 FROM ruby:2.7-alpine3.14
 
-# https://pages.github.com/versions/
+# 	Check <https://pages.github.com/versions/> for the most recent
+# 	version.
 ARG GITHUB_PAGES_VERSION=215
 
 RUN set -eux; \
