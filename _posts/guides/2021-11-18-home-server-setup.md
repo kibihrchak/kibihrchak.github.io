@@ -64,25 +64,75 @@ So, that should all look something like this:
 ![deployment
 diagram](/assets/posts/guides/2021-11-18-home-server-setup/deployment-diagram.png)
 
+## [TODO] Server Details
+
+initial user with sudo permissions - used for provisioning
+user for services - home-server
+
+file layout - 
+
+/mnt/data - Mount point for data
+/mnt/data/user/home-server/data/apps/qbittorrent
+/mnt/data/user/<user> - <user> directory shared by SAMBA
+/mnt/data/shr - Will be shared by SAMBA
+/mnt/data/shr/torrents
+/mnt/data/shr/media
+
 ## Expected Server State
 
-Here are the details of the expected system state, as well as the marker
-if that state element can be reached automatically ([A]) or need to be
-set up manually ([M]).
+Here are the details of the expected system state:
 
-1.  [M] Install latest Ubuntu Server (20.04).
+1.  Manual setup.
 2.  System configuration:
-    1.  [?] Dedicated user for running all services.
-    2.  [M] Router static address assignment to the server.
-    3.  [M] External HDD auto mount.
+    1.  Dedicated user for running all services.
 3.  Software installation and config:
-    1.  [M] SSH server.
-    2.  [A] SAMBA server.
-    3.  [A] NordVPN client.
-    4.  [A] GUI-less qBittorrent client.
+    1.  SAMBA server.
+    2.  NordVPN client.
+    3.  GUI-less qBittorrent client.
 4.  Data drive (external HDD) setup:
-    1.  [M] Partitioning and file system setup.
-    2.  [M] File organization.
+    2.  File organization.
+
+### Manual Setup
+
+http://cobbler.github.io/
+https://blog.scottlowe.org/2015/05/20/fully-automated-ubuntu-install/
+https://fai-project.org/fai-guide/#_a_id_work_a_how_does_fai_work
+
+1.  Router static address assignment to the server.
+2.  Install latest Ubuntu Server (20.04).
+    1.  English language.
+    2.  English (US) keyboard.
+    3.  No network interface config.
+    4.  No proxy.
+    5.  Default mirror address.
+    6.  Whole disk, no LVM, no encryption.
+    7.  Create user for provisioning.
+    8.  Install OpenSSH server, no SSH identity import.
+    9.  No snaps.
+3.  Remote access setup:
+    1.  Generate SSH key and copy it to the server via
+        [`ssh-copy-id`](https://www.ssh.com/academy/ssh/copy-id).
+    2.  Execute sudo w/o password for the provisioning user.
+4.  Data partition setup:
+    1.  Create and setup data partition.
+    2.  Create mount point directory `/mnt/data`.
+    3.  Auto-mount data partition by [editing
+        fstab](https://wiki.archlinux.org/title/Fstab), then reloading
+        it with `# mount -a`.
+
+#### Setting up Data Partition for Test Server
+
+On the test server a data partition can be set up as a file containing
+the partition and mount it as a loop device -
+
+```{.bash}
+# dd if=/dev/zero of=/root/data.ext4 bs=1M count=1000
+# mkfs.ext4 /root/data.ext4
+# cat <<EOF >> /root/test.txt 
+> # Home server data partition
+> /root/data.ext4 /mnt/data ext4 defaults 0 0 
+> EOF
+```
 
 ## Resources
 

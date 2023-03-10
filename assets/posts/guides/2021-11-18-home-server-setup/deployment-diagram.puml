@@ -13,19 +13,19 @@ node        "Test server"                       as tsv
 }
 node        "NUC Server" <<Device>>             as srv
 node        "External HDD" <<Device>>           as hdd {
-database    "Media files"                       as mef
+database    "Data"                              as mef
 }
 node        "Router" <<Device>>                 as rtr
 
 '   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 '   Relations
 
-srv     "1"     *-d-    "1"     hdd
+srv     "1"     *--     "1"     hdd
 
-prv             -d->            tsv : Provision (manual)
-prv             -d->            srv : Provision (manual)
-prv             -d->            hdd : Provision (manual)
-prv             -r->            phs : Run automated operations
+prv             -->             tsv : Provision (manual)
+prv             -->             srv : Provision (manual)
+prv             -->             hdd : Provision (manual)
+prv             -->             phs : Run automated operations
 
 ans             -->             tsv : Provision (auto)
 ans             -->             srv : Provision (auto)
